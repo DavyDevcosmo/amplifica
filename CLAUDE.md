@@ -11,12 +11,12 @@ O que o Amplifica otimiza: confiança na compra (preview de áudio antes de paga
 - Next.js (App Router) + TypeScript + Tailwind
 - Zustand (estado global no client)
 - Prisma + Neon (Postgres, com connection pooling)
-- Auth.js (credenciais + verificação por código)
+- Better Auth (credenciais + verificação por código)
 - Zod (validação em toda fronteira de entrada)
 - Stripe Connect (split de pagamento, KYC hospedado)
 - Cloudflare R2 (arquivos de produto)
 - Biome (lint + format, um binário só)
-- Vitest (unitário/integração) + Playwright (E2E)
+- Vitest + React Testing Library (unitário/integração) + Playwright (E2E)
 - pnpm (gerenciador de pacotes)
 - Deploy: Vercel
 
