@@ -1,0 +1,37 @@
+// ---------------------------------------------------------------------------
+// Notificação e integração com Stripe
+// ---------------------------------------------------------------------------
+
+enum NotificationType {
+  PRODUCT_UPDATED
+  PRODUCT_APPROVED
+  PRODUCT_REJECTED
+  NEW_SALE
+  REFUND_ISSUED
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  productId String?
+  product   Product?         @relation(fields: [productId], references: [id], onDelete: SetNull)
+  orderId   String?
+  order     Order?           @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+
+  @@index([userId, readAt])
+  @@index([productId])
+  @@index([orderId])
+  @@map("notifications")
+}
+
+model StripeEvent {
+  id          String   @id
+  type        String
+  processedAt DateTime @default(now())
+
+  @@map("stripe_events")
+}

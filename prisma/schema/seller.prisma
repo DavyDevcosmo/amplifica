@@ -1,0 +1,43 @@
+// ---------------------------------------------------------------------------
+// Vendedor
+// ---------------------------------------------------------------------------
+
+enum SellerStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum StripeAccountStatus {
+  NOT_STARTED
+  PENDING
+  VERIFIED
+  RESTRICTED
+}
+
+enum BusinessType {
+  INDIVIDUAL
+  COMPANY
+}
+
+model SellerProfile {
+  id                      String              @id @default(cuid())
+  userId                  String              @unique
+  user                    User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  slug                    String              @unique
+  displayName             String
+  bio                     String?
+  avatarKey               String?
+  status                  SellerStatus        @default(ACTIVE)
+  stripeAccountId         String?             @unique
+  stripeAccountStatus     StripeAccountStatus @default(NOT_STARTED)
+  businessType            BusinessType?
+  isFounder               Boolean             @default(false)
+  founderWaivedSalesCount Int                 @default(0)
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @updatedAt
+
+  products   Product[]
+  orderItems OrderItem[]
+
+  @@map("seller_profiles")
+}

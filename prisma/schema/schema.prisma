@@ -1,0 +1,17 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+//
+// Schema dividido em múltiplos arquivos por domínio (multi-file schema,
+// Prisma >= 6.7): auth.prisma, seller.prisma, product.prisma, order.prisma,
+// notification.prisma. Este arquivo carrega só generator + datasource — ver
+// prisma.config.ts para o path da pasta (`schema: "prisma/schema"`).
+
+generator client {
+  provider        = "prisma-client"
+  output          = "../../src/generated/prisma"
+  previewFeatures = ["partialIndexes"]
+}
+
+datasource db {
+  provider = "postgresql"
+}

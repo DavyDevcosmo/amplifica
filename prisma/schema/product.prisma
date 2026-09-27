@@ -1,0 +1,167 @@
+// ---------------------------------------------------------------------------
+// Produto
+// ---------------------------------------------------------------------------
+
+enum Instrument {
+  GUITAR
+  BASS
+  ACOUSTIC_GUITAR
+}
+
+enum ProductType {
+  PRESET
+  IR
+  CAPTURE
+  MIDI_PATCH
+  BUNDLE
+}
+
+enum Device {
+  KEMPER
+  LINE6_HELIX
+  QUAD_CORTEX
+  TONEX
+  NEURAL_DSP_PLUGIN
+  FRACTAL
+  BOSS
+  HEADRUSH
+  UNIVERSAL_IR
+  OTHER
+}
+
+enum ProductStatus {
+  DRAFT
+  PENDING_REVIEW
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+}
+
+enum RevisionStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+}
+
+enum FileKind {
+  DELIVERABLE
+  PREVIEW_AUDIO
+  COVER_IMAGE
+}
+
+model Category {
+  id   String @id @default(cuid())
+  name String
+  slug String @unique
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id   String @id @default(cuid())
+  name String
+  slug String @unique
+
+  products Product[]
+
+  @@map("tags")
+}
+
+model Product {
+  id             String           @id @default(cuid())
+  sellerId       String
+  seller         SellerProfile    @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  slug           String           @unique
+  instrument     Instrument
+  productType    ProductType
+  compatibility  Device[]
+  status         ProductStatus    @default(DRAFT)
+  priceCents     Int
+  title          String
+  description    String
+  inspiredBy     String?
+  categoryId     String?
+  category       Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tags           Tag[]
+  liveRevisionId String?          @unique
+  liveRevision   ProductRevision? @relation("LiveRevision", fields: [liveRevisionId], references: [id], onDelete: SetNull)
+  publishedAt    DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  revisions     ProductRevision[] @relation("ProductRevisions")
+  bundleItems   BundleItem[]      @relation("BundleParent")
+  includedIn    BundleItem[]      @relation("BundleChild")
+  orderItems    OrderItem[]
+  entitlements  Entitlement[]
+  notifications Notification[]
+
+  // Sem @@index([status]) separado: [status, publishedAt] já cobre buscas só
+  // por status (leftmost prefix).
+  @@index([instrument])
+  @@index([productType])
+  @@index([sellerId])
+  @@index([status, publishedAt])
+  @@index([categoryId])
+  @@index([compatibility], type: Gin)
+  @@map("products")
+}
+
+model ProductRevision {
+  id              String         @id @default(cuid())
+  productId       String
+  product         Product        @relation("ProductRevisions", fields: [productId], references: [id], onDelete: Cascade)
+  version         Int
+  title           String
+  description     String
+  inspiredBy      String?
+  compatibility   Device[]
+  changelog       String?
+  status          RevisionStatus @default(DRAFT)
+  submittedAt     DateTime?
+  reviewedById    String?
+  reviewer        User?          @relation("RevisionReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt      DateTime?
+  rejectionReason String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  files      ProductFile[]
+  liveFor    Product?    @relation("LiveRevision")
+  orderItems OrderItem[]
+
+  @@unique([productId, version])
+  @@index([reviewedById])
+  @@map("product_revisions")
+}
+
+model ProductFile {
+  id          String          @id @default(cuid())
+  revisionId  String
+  revision    ProductRevision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+  kind        FileKind
+  r2Key       String
+  fileName    String
+  contentType String
+  sizeBytes   Int
+  createdAt   DateTime        @default(now())
+
+  downloads Download[]
+
+  @@index([revisionId])
+  @@map("product_files")
+}
+
+model BundleItem {
+  bundleId  String
+  bundle    Product @relation("BundleParent", fields: [bundleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation("BundleChild", fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([bundleId, productId])
+  @@index([productId])
+  @@map("bundle_items")
+}

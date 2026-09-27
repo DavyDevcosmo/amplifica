@@ -1,0 +1,131 @@
+// ---------------------------------------------------------------------------
+// Pedido, acesso e reembolso
+// ---------------------------------------------------------------------------
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PARTIALLY_REFUNDED
+  REFUNDED
+  FAILED
+  CANCELED
+}
+
+enum OrderItemStatus {
+  PAID
+  REFUNDED
+}
+
+enum RefundStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+model Order {
+  id                      String      @id @default(cuid())
+  buyerId                 String?
+  // SetNull (não Cascade): excluir o usuário não pode apagar o histórico
+  // financeiro do pedido — sellerAmountCents/stripeTransferId dos itens
+  // continuam necessários para conciliar com o Stripe mesmo sem o comprador.
+  buyer                   User?       @relation(fields: [buyerId], references: [id], onDelete: SetNull)
+  status                  OrderStatus @default(PENDING)
+  totalCents              Int
+  stripeCheckoutSessionId String?     @unique
+  stripePaymentIntentId   String?     @unique
+  paidAt                  DateTime?
+  createdAt               DateTime    @default(now())
+  updatedAt               DateTime    @updatedAt
+
+  items         OrderItem[]
+  notifications Notification[]
+
+  @@index([buyerId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id                String          @id @default(cuid())
+  orderId           String
+  order             Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId         String
+  product           Product         @relation(fields: [productId], references: [id], onDelete: Restrict)
+  revisionId        String
+  revision          ProductRevision @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  sellerId          String
+  seller            SellerProfile   @relation(fields: [sellerId], references: [id], onDelete: Restrict)
+  status            OrderItemStatus @default(PAID)
+  priceCents        Int
+  commissionBps     Int
+  platformFeeCents  Int
+  sellerAmountCents Int
+  availableAt       DateTime
+  stripeTransferId  String?
+  transferredAt     DateTime?
+  createdAt         DateTime        @default(now())
+
+  entitlement Entitlement?
+  refund      Refund?
+
+  // Sem @@index([sellerId]) separado: [sellerId, availableAt] já cobre buscas
+  // só por sellerId (leftmost prefix).
+  @@index([orderId])
+  @@index([sellerId, availableAt])
+  @@map("order_items")
+}
+
+model Entitlement {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItemId String    @unique
+  orderItem   OrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  downloads Download[]
+
+  // Sem @@unique([userId, productId]) simples: bloquearia recomprar o mesmo
+  // produto depois de um reembolso (o entitlement antigo continua na tabela
+  // com revokedAt preenchido). Em vez disso, um índice único PARCIAL garante
+  // no banco que só existe 1 entitlement ATIVO por (userId, productId) — sem
+  // isso, dois webhooks concorrentes do mesmo checkout poderiam criar acesso
+  // duplicado. Índices parciais exigem previewFeatures = ["partialIndexes"]
+  // no generator (ver schema.prisma).
+  @@unique([userId, productId], where: raw("\"revokedAt\" IS NULL"))
+  @@index([userId, productId])
+  @@index([productId])
+  @@map("entitlements")
+}
+
+model Download {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entitlementId String
+  entitlement   Entitlement @relation(fields: [entitlementId], references: [id], onDelete: Cascade)
+  productFileId String
+  productFile   ProductFile @relation(fields: [productFileId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+
+  @@index([userId])
+  @@index([entitlementId])
+  @@index([productFileId])
+  @@map("downloads")
+}
+
+model Refund {
+  id             String       @id @default(cuid())
+  orderItemId    String       @unique
+  orderItem      OrderItem    @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  amountCents    Int
+  reason         String
+  status         RefundStatus @default(PENDING)
+  stripeRefundId String?      @unique
+  processedAt    DateTime?
+  createdAt      DateTime     @default(now())
+
+  @@map("refunds")
+}
