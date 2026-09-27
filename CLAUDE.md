@@ -2,7 +2,7 @@
 
 ## Visão geral
 
-Marketplace multi-vendedor brasileiro de presets, IRs e tone match para pedaleira de guitarra. Vendedores são sempre pessoa física vendendo criação técnica própria (nunca cover, cifra ou letra de música de terceiro). O produto é 100% digital: sem estoque, sem frete, sem agenda.
+Marketplace multi-vendedor brasileiro de presets, IRs e tone match para pedaleira. O MVP lança só com guitarra, mas o banco é multi-instrumento desde o dia 1 (baixo e violão já estão planejados). Vendedores são sempre pessoa física ou CNPJ (tipo de conta escolhido no onboarding do Stripe, não no cadastro) vendendo criação técnica própria (nunca cover, cifra ou letra de música de terceiro). O produto é 100% digital: sem estoque, sem frete, sem agenda.
 
 O que o Amplifica otimiza: confiança na compra (preview de áudio antes de pagar) e simplicidade para o vendedor (publicar não exige dado bancário — só vender exige). Prefira simplicidade a abstração — este é um projeto solo, desenvolvido em ritmo de fim de semana.
 
