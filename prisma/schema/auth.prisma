@@ -86,3 +86,25 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+// Exigida pelo `rateLimit: { storage: "database" }` do Better Auth — memória
+// não sobrevive entre invocações serverless.
+model RateLimit {
+  id          String @id
+  key         String @unique
+  count       Int
+  lastRequest BigInt
+
+  @@map("rate_limit")
+}
+
+// Bloqueio progressivo de login por e-mail — não é do Better Auth, é regra
+// própria (ver server/services/loginThrottleService.ts).
+model LoginThrottle {
+  email        String    @id
+  failedCount  Int       @default(0)
+  lockedUntil  DateTime?
+  lastFailedAt DateTime
+
+  @@map("login_throttles")
+}
