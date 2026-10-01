@@ -41,3 +41,21 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# caixa de e-mail fake lida pelo Playwright em modo E2E
+/.e2e/
+
+# navegadores do Playwright
+/test-results/
+/playwright-report/
+/.lighthouseci/
+
+# métricas brutas do pnpm test:perf (e2e/perf/perfReport.ts) — só a
+# baseline em e2e/perf/baseline.json é versionada
+/.perf-results/
+
+# cache do hook de validação (.claude/hooks/verify.mjs) — guarda só o hash
+# do último diff validado com sucesso, nada sensível
+/.claude/.verify-cache
+/blob-report/
+/playwright/.cache/
