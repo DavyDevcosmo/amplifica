@@ -58,11 +58,20 @@ type ActionResult<T> =
 pnpm dev              # servidor local
 pnpm build            # build de produção
 pnpm test             # Vitest
-pnpm test:e2e         # Playwright
+pnpm test:e2e         # Playwright (funcional, contra pnpm dev)
+pnpm test:perf        # Playwright de performance (contra build de produção)
+pnpm perf:lighthouse  # Lighthouse CI
+pnpm perf             # test:perf + perf:lighthouse
 pnpm lint             # Biome
 pnpm db:migrate       # prisma migrate dev
 pnpm db:seed          # popular banco local
 ```
+
+## Validação
+
+- Um hook de `Stop` (`.claude/hooks/verify.mjs`) já roda `pnpm lint`, `pnpm exec tsc --noEmit` e `pnpm test` automaticamente antes de qualquer tarefa terminar — se algo falhar, a tarefa não termina até corrigir.
+- Em mudança que toca **UI, navegação, banco ou auth**, rode também o agente `test-engineer` (escreve/roda testes e mede performance) e, se for uma mudança de performance, `pnpm perf` — compara contra `e2e/perf/baseline.json` e falha se estourar os budgets em `e2e/perf/budgets.ts`.
+- `pnpm perf` exige a branch Neon de teste configurada em `.env.e2e` (ver `.env.e2e.example`).
 
 ## Nunca fazer
 

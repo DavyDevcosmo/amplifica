@@ -1,0 +1,2 @@
+- [Amplifica: stack e convenções do projeto](project_amplifica_overview.md) — Next 16 (proxy.ts), Better Auth, Prisma multi-file schema, Biome, camelCase.
+- [Ambiente Windows gera ruído de CRLF no Biome](feedback_windows_crlf_biome.md) — não reportar diffs puramente de line-ending como achado de lint.
