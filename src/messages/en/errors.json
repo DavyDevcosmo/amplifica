@@ -1,0 +1,22 @@
+{
+  "sessionExpired": "Your session expired. Please sign in again.",
+  "invalidData": "Invalid data",
+  "actionFailed": "We couldn't complete that. Please try again.",
+  "emailInvalid": "Enter a valid email.",
+  "nameTooShort": "Name is too short",
+  "nameTooLong": "Name is too long",
+  "passwordTooShort": "Use at least 8 characters.",
+  "passwordTooLong": "Password is too long",
+  "confirmPasswordRequired": "Confirm your password",
+  "passwordsMismatch": "Passwords don't match",
+  "otpLength": "The code has 6 digits",
+  "currentPasswordRequired": "Enter your current password",
+  "avatarTooLarge": "Image is larger than the 2 MB limit",
+  "invalidCredentials": "Invalid email or password.",
+  "emailNotVerified": "Confirm your email before signing in.",
+  "tooManyAttempts": "Too many attempts. Wait a moment before trying again.",
+  "invalidOtp": "Invalid code.",
+  "otpExpired": "Code expired. Request a new one.",
+  "registrationExpired": "Your sign-up expired. Please sign up again.",
+  "loginLocked": "Too many attempts. Try again in {minutes} min."
+}

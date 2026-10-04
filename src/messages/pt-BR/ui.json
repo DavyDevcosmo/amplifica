@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "description": "Presets, IRs e tone match para pedaleira, feitos por guitarristas de verdade.",
+    "signIn": "Entrar — Amplifica",
+    "signUp": "Criar conta — Amplifica",
+    "verify": "Confirme seu e-mail — Amplifica",
+    "forgot": "Recuperar senha — Amplifica",
+    "resetCode": "Digite o código — Amplifica",
+    "reset": "Redefinir senha — Amplifica"
+  },
+  "nav": {
+    "main": "Principal",
+    "home": "Amplifica, página inicial",
+    "presets": "Presets",
+    "irs": "IRs",
+    "captures": "Captures",
+    "bundles": "Bundles",
+    "signIn": "Entrar",
+    "signUp": "Criar conta",
+    "openMenu": "Abrir menu",
+    "userMenu": "Menu do usuário",
+    "profile": "Perfil",
+    "signOut": "Sair"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
+  },
+  "language": {
+    "label": "Idioma",
+    "ptBR": "Português (BR)",
+    "en": "English"
+  },
+  "footer": {
+    "copyright": "© Amplifica. Todos os direitos reservados.",
+    "terms": "Termos de uso",
+    "privacy": "Privacidade"
+  },
+  "showcase": {
+    "featured": "Em destaque",
+    "compatible": "Compatível com a sua pedaleira",
+    "audioPreview": "Preview em áudio",
+    "purchases": "Minhas compras",
+    "download": "Baixar",
+    "headline": "Ouça antes de comprar. Toque como no palco.",
+    "description": "Presets, IRs e captures autorais com preview em áudio antes da compra."
+  },
+  "auth": {
+    "shared": {
+      "email": "E-mail",
+      "passwordHint": "Use pelo menos 8 caracteres.",
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha",
+      "backToLogin": "Voltar para o login"
+    },
+    "code": {
+      "label": "Código de 6 dígitos",
+      "invalid": "Código incorreto. Confira os dígitos e tente de novo.",
+      "expired": "Esse código expirou. Peça um novo código para continuar.",
+      "exhausted": "Você atingiu o limite de tentativas. Peça um novo código para continuar.",
+      "notReceived": "Não recebeu?",
+      "resend": "Reenviar código",
+      "resending": "Reenviando…",
+      "resendIn": "Reenviar código em {time}",
+      "resent": "Código reenviado.",
+      "attemptsInitial": "Você tem {count} tentativas",
+      "attemptsLeft": "{count, plural, one {Você tem mais # tentativa} other {Você tem mais # tentativas}}",
+      "expiresIn": "O código expira em {time}"
+    },
+    "social": {
+      "divider": "Ou continue com",
+      "google": "Continuar com Google",
+      "error": "Não foi possível continuar com o Google. Tente de novo ou use e-mail e senha."
+    },
+    "signIn": {
+      "title": "Bem-vindo de volta",
+      "description": "Entre para ouvir, comprar e baixar seus timbres.",
+      "resetTitle": "Senha redefinida.",
+      "resetBody": "Faça login com sua nova senha.",
+      "emailPlaceholder": "Digite seu e-mail",
+      "password": "Senha",
+      "passwordPlaceholder": "Digite sua senha",
+      "forgot": "Esqueci minha senha",
+      "submit": "Entrar",
+      "submitting": "Entrando…",
+      "noAccount": "Não tem conta?",
+      "createAccount": "Criar conta"
+    },
+    "signUp": {
+      "title": "Crie sua conta",
+      "description": "Comece a comprar ou a vender timbres de guitarra.",
+      "reviewFields": "Revise os campos destacados.",
+      "name": "Nome completo",
+      "namePlaceholder": "Como você quer ser chamado",
+      "emailPlaceholder": "Digite seu e-mail",
+      "password": "Senha",
+      "passwordPlaceholder": "Crie uma senha",
+      "confirmPassword": "Confirmar senha",
+      "confirmPasswordPlaceholder": "Repita a senha",
+      "submit": "Criar conta",
+      "submitting": "Criando conta…",
+      "haveAccount": "Já tem conta?",
+      "signIn": "Entrar"
+    },
+    "verify": {
+      "title": "Confirme seu e-mail",
+      "notice": "Enviamos um código para <strong>{email}</strong>. Ele vale por 5 minutos.",
+      "unverifiedTitle": "Sua conta ainda não foi verificada.",
+      "unverifiedBody": "Reenviamos o código automaticamente.",
+      "submit": "Confirmar e-mail",
+      "submitting": "Confirmando…"
+    },
+    "forgot": {
+      "title": "Esqueceu sua senha?",
+      "description": "Digite o e-mail da conta e enviaremos um código para redefinir a senha.",
+      "emailPlaceholder": "Digite o e-mail da sua conta",
+      "submit": "Enviar código",
+      "submitting": "Enviando…"
+    },
+    "resetCode": {
+      "title": "Digite o código",
+      "description": "Digite o código de 6 dígitos que enviamos para o seu e-mail.",
+      "sentTo": "Enviamos o código para <strong>{email}</strong>.",
+      "useOtherEmail": "Usar outro e-mail",
+      "submit": "Verificar código",
+      "submitting": "Verificando…"
+    },
+    "reset": {
+      "title": "Crie uma nova senha",
+      "description": "Código confirmado. Escolha uma nova senha para a sua conta.",
+      "newPassword": "Nova senha",
+      "newPasswordPlaceholder": "Crie uma nova senha",
+      "confirmPassword": "Confirmar nova senha",
+      "confirmPasswordPlaceholder": "Repita a nova senha",
+      "submit": "Redefinir senha",
+      "submitting": "Salvando…"
+    }
+  },
+  "account": {
+    "meta": "Meu perfil — Amplifica",
+    "title": "Meu perfil",
+    "subtitle": "Seus dados de conta.",
+    "profileCard": "Foto e nome",
+    "passwordCard": "Senha",
+    "passwordCardDescription": "Ao trocar, suas outras sessões são desconectadas.",
+    "name": "Nome",
+    "saveName": "Salvar nome",
+    "saving": "Salvando…",
+    "profileUpdated": "Perfil atualizado",
+    "currentPassword": "Senha atual",
+    "newPassword": "Nova senha",
+    "confirmNewPassword": "Confirmar nova senha",
+    "changePassword": "Alterar senha",
+    "passwordChanged": "Senha alterada. Outras sessões foram desconectadas.",
+    "changePhoto": "Trocar foto",
+    "uploading": "Enviando…",
+    "photoHint": "PNG, JPEG ou WEBP até 2 MB.",
+    "invalidImage": "Imagem inválida",
+    "uploadFailed": "Falha ao enviar a imagem",
+    "photoUpdated": "Foto atualizada"
+  }
+}

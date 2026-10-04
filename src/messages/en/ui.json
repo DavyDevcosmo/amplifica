@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "description": "Presets, IRs and tone match for your modeler, made by working guitarists.",
+    "signIn": "Sign in — Amplifica",
+    "signUp": "Create account — Amplifica",
+    "verify": "Confirm your email — Amplifica",
+    "forgot": "Reset password — Amplifica",
+    "resetCode": "Enter the code — Amplifica",
+    "reset": "Set a new password — Amplifica"
+  },
+  "nav": {
+    "main": "Main",
+    "home": "Amplifica, home page",
+    "presets": "Presets",
+    "irs": "IRs",
+    "captures": "Captures",
+    "bundles": "Bundles",
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "openMenu": "Open menu",
+    "userMenu": "User menu",
+    "profile": "Profile",
+    "signOut": "Sign out"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "label": "Language",
+    "ptBR": "Português (BR)",
+    "en": "English"
+  },
+  "footer": {
+    "copyright": "© Amplifica. All rights reserved.",
+    "terms": "Terms of use",
+    "privacy": "Privacy"
+  },
+  "showcase": {
+    "featured": "Featured",
+    "compatible": "Works with your modeler",
+    "audioPreview": "Audio preview",
+    "purchases": "My purchases",
+    "download": "Download",
+    "headline": "Listen before you buy. Play like you're on stage.",
+    "description": "Original presets, IRs and captures, with an audio preview before you pay."
+  },
+  "auth": {
+    "shared": {
+      "email": "Email",
+      "passwordHint": "Use at least 8 characters.",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "backToLogin": "Back to sign in"
+    },
+    "code": {
+      "label": "6-digit code",
+      "invalid": "Wrong code. Check the digits and try again.",
+      "expired": "This code expired. Request a new one to continue.",
+      "exhausted": "You've reached the attempt limit. Request a new code to continue.",
+      "notReceived": "Didn't get it?",
+      "resend": "Resend code",
+      "resending": "Resending…",
+      "resendIn": "Resend code in {time}",
+      "resent": "Code sent again.",
+      "attemptsInitial": "You have {count} attempts",
+      "attemptsLeft": "{count, plural, one {You have # more attempt} other {You have # more attempts}}",
+      "expiresIn": "The code expires in {time}"
+    },
+    "social": {
+      "divider": "Or continue with",
+      "google": "Continue with Google",
+      "error": "We couldn't continue with Google. Try again or use email and password."
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "description": "Sign in to listen, buy and download your tones.",
+      "resetTitle": "Password reset.",
+      "resetBody": "Sign in with your new password.",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "forgot": "Forgot password?",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "noAccount": "No account yet?",
+      "createAccount": "Create account"
+    },
+    "signUp": {
+      "title": "Create your account",
+      "description": "Start buying or selling guitar tones.",
+      "reviewFields": "Check the highlighted fields.",
+      "name": "Full name",
+      "namePlaceholder": "What should we call you?",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Repeat the password",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "verify": {
+      "title": "Confirm your email",
+      "notice": "We sent a code to <strong>{email}</strong>. It's valid for 5 minutes.",
+      "unverifiedTitle": "Your account isn't verified yet.",
+      "unverifiedBody": "We sent a new code automatically.",
+      "submit": "Confirm email",
+      "submitting": "Confirming…"
+    },
+    "forgot": {
+      "title": "Forgot your password?",
+      "description": "Enter your account email and we'll send a code to reset your password.",
+      "emailPlaceholder": "Enter your account email",
+      "submit": "Send code",
+      "submitting": "Sending…"
+    },
+    "resetCode": {
+      "title": "Enter the code",
+      "description": "Enter the 6-digit code we sent to your email.",
+      "sentTo": "We sent the code to <strong>{email}</strong>.",
+      "useOtherEmail": "Use another email",
+      "submit": "Verify code",
+      "submitting": "Verifying…"
+    },
+    "reset": {
+      "title": "Create a new password",
+      "description": "Code confirmed. Choose a new password for your account.",
+      "newPassword": "New password",
+      "newPasswordPlaceholder": "Create a new password",
+      "confirmPassword": "Confirm new password",
+      "confirmPasswordPlaceholder": "Repeat the new password",
+      "submit": "Reset password",
+      "submitting": "Saving…"
+    }
+  },
+  "account": {
+    "meta": "My profile — Amplifica",
+    "title": "My profile",
+    "subtitle": "Your account details.",
+    "profileCard": "Photo and name",
+    "passwordCard": "Password",
+    "passwordCardDescription": "Changing it signs you out of your other sessions.",
+    "name": "Name",
+    "saveName": "Save name",
+    "saving": "Saving…",
+    "profileUpdated": "Profile updated",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmNewPassword": "Confirm new password",
+    "changePassword": "Change password",
+    "passwordChanged": "Password changed. Your other sessions were signed out.",
+    "changePhoto": "Change photo",
+    "uploading": "Uploading…",
+    "photoHint": "PNG, JPEG or WEBP, up to 2 MB.",
+    "invalidImage": "Invalid image",
+    "uploadFailed": "Couldn't upload the image",
+    "photoUpdated": "Photo updated"
+  }
+}

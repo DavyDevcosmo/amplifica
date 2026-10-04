@@ -1,0 +1,22 @@
+{
+  "sessionExpired": "Sessão expirada. Entre novamente.",
+  "invalidData": "Dados inválidos",
+  "actionFailed": "Não foi possível completar a ação. Tente novamente.",
+  "emailInvalid": "Digite um e-mail válido.",
+  "nameTooShort": "Nome muito curto",
+  "nameTooLong": "Nome muito longo",
+  "passwordTooShort": "Use pelo menos 8 caracteres.",
+  "passwordTooLong": "Senha muito longa",
+  "confirmPasswordRequired": "Confirme a senha",
+  "passwordsMismatch": "As senhas não coincidem",
+  "otpLength": "O código tem 6 dígitos",
+  "currentPasswordRequired": "Informe a senha atual",
+  "avatarTooLarge": "Imagem maior que o limite de 2 MB",
+  "invalidCredentials": "E-mail ou senha inválidos.",
+  "emailNotVerified": "Confirme seu e-mail antes de entrar.",
+  "tooManyAttempts": "Muitas tentativas. Aguarde antes de tentar de novo.",
+  "invalidOtp": "Código inválido.",
+  "otpExpired": "Código expirado. Peça um novo.",
+  "registrationExpired": "Cadastro expirou. Cadastre-se novamente.",
+  "loginLocked": "Muitas tentativas. Tente novamente em {minutes} min."
+}
