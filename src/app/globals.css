@@ -2,14 +2,29 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/*
+ * Tema: segue o sistema (prefers-color-scheme) e aceita override manual por
+ * classe (.dark / .light no <html>), por exemplo via next-themes.
+ * Cada token usa light-dark(claro, escuro): uma fonte de verdade só.
+ */
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not(.light, .light *)) {
+      @slot;
+    }
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-public-sans);
+  --font-mono: var(--font-plex-mono);
+  --font-heading: var(--font-archivo);
+  --font-wordmark: var(--font-bricolage);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -27,6 +42,18 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-destructive-strong: var(--destructive-strong);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-destructive-soft-foreground: var(--destructive-soft-foreground);
+  --color-destructive-soft-border: var(--destructive-soft-border);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-foreground: var(--info-soft-foreground);
+  --color-info-soft-border: var(--info-soft-border);
+  --color-success-soft-border: var(--success-soft-border);
+  --color-field: var(--field);
+  --color-primary-hover: var(--primary-hover);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -39,6 +66,12 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-player-bg: var(--player-bg);
+  --color-player-foreground: var(--player-foreground);
+  --color-player-muted: var(--player-muted);
+  --color-player-border: var(--player-border);
+  --color-player-track: var(--player-track);
+  --color-player-progress: var(--player-progress);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -46,85 +79,184 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --shadow-float: var(--float-shadow);
 }
 
+/* Paleta esmeralda. Formato: light-dark(claro, escuro). */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  color-scheme: light dark;
+
+  --background: light-dark(#edf1ef, #0b1411);
+  --foreground: light-dark(#0e1a16, #e6efeb);
+  --card: light-dark(#f8faf9, #121d19);
+  --card-foreground: light-dark(#0e1a16, #e6efeb);
+  --popover: light-dark(#f8faf9, #121d19);
+  --popover-foreground: light-dark(#0e1a16, #e6efeb);
+  --primary: light-dark(#0a7a5a, #34d3a0);
+  --primary-foreground: light-dark(#ffffff, #05140f);
+  /* Hover de botão/link primário: mais escuro no claro, mais claro no escuro. */
+  --primary-hover: light-dark(#0a4a38, #bfebdd);
+  --secondary: light-dark(#dee5e2, #1b2823);
+  --secondary-foreground: light-dark(#0e1a16, #e6efeb);
+  --muted: light-dark(#dee5e2, #1b2823);
+  --muted-foreground: light-dark(#46544e, #94a8a0);
+  --accent: light-dark(#d3ebe2, #12352b);
+  --accent-foreground: light-dark(#0a4a38, #bfebdd);
+  --destructive: light-dark(#c0351f, #ff7a66);
+  /* Texto de erro: um tom abaixo da borda (--destructive) pra passar AA. */
+  --destructive-strong: light-dark(#a52a17, #ff7a66);
+  /* Avisos (Alert) em fundo suave. Os valores escuros são derivados. */
+  --destructive-soft: light-dark(#fcebe7, #2a1612);
+  --destructive-soft-foreground: light-dark(#7a1f10, #ffb4a6);
+  --destructive-soft-border: light-dark(#e9b4a9, #6b2a1f);
+  --info-soft: light-dark(#e6eef5, #13222d);
+  --info-soft-foreground: light-dark(#1f3a56, #a9c8e8);
+  --info-soft-border: light-dark(#b9cde0, #2b4a63);
+  --success-soft-border: light-dark(#a9d3c3, #1f4d3f);
+  --success: light-dark(#44700a, #b5d84a);
+  --success-foreground: light-dark(#ffffff, #0b1411);
+  --border: light-dark(#c5d0cb, #263530);
+  /* Borda forte de controles (campos, outline): >= 3:1 sobre o fundo. */
+  --input: light-dark(#75877f, #5a7068);
+  /* Fundo de campo: branco no claro, mesma cor da página no escuro. */
+  --field: light-dark(#ffffff, #0b1411);
+  --ring: color-mix(in srgb, var(--primary) 50%, transparent);
+  --chart-1: light-dark(#0a7a5a, #34d3a0);
+  --chart-2: light-dark(#9a6414, #e8b04a);
+  --chart-3: light-dark(#3b6fb6, #6fa3e8);
+  --chart-4: light-dark(#c0551f, #f07f5a);
+  --chart-5: light-dark(#5b6b64, #94a8a0);
+  --radius: 0.5rem;
+
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--card-foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  /* Player de preview: sempre painel escuro, nos dois temas. */
+  --player-bg: #121d19;
+  --player-foreground: #e6efeb;
+  --player-muted: #94a8a0;
+  --player-border: #5a7068;
+  --player-track: #5a7068;
+  --player-progress: #34d3a0;
+
+  /* Painel lateral das telas de auth: verde-escuro fixo nos dois temas. */
+  --showcase-from: #12352b;
+  --showcase-to: #0b1411;
+  --float-shadow: 0 12px 36px light-dark(rgb(0 0 0 / 0.35), rgb(0 0 0 / 0.45));
 }
 
+/* Override manual por classe, se um seletor de tema for adicionado. */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
+/*
+ * Ritmo vertical das telas de auth. A página cobre a altura da viewport e
+ * nunca rola; os espaços encolhem só um pouco por ALTURA de tela, e quando o
+ * formulário (principalmente o cadastro) não cabe, o scroll fica só dentro do
+ * cartão — melhor rolar do que espremer os elementos. Alvos de toque nunca
+ * ficam abaixo de 44px (2.75rem).
+ */
+:root {
+  --auth-header-h: 4.5rem;
+  --auth-panel-py: 1.5rem;
+  --auth-title-size: 2rem;
+  --auth-section-gap: 2rem;
+  --auth-gap: 1.125rem;
+  --auth-control-h: 3.25rem;
+  --auth-otp-h: 4rem;
+  /* painel lateral: escala dos cards e respiro vertical */
+  --showcase-scale: 1;
+  --showcase-py: 2.5rem;
+  --showcase-pb: 4.5rem;
+  --showcase-gap: 3rem;
+}
+
+@media (max-height: 880px) {
+  :root {
+    --auth-header-h: 4rem;
+    --auth-panel-py: 1rem;
+    --auth-title-size: 1.875rem;
+    --auth-section-gap: 1.5rem;
+    --auth-gap: 1rem;
+    --auth-control-h: 3rem;
+    --auth-otp-h: 3.5rem;
+    --showcase-scale: 0.85;
+    --showcase-py: 1.5rem;
+    --showcase-pb: 3.5rem;
+    --showcase-gap: 2rem;
+  }
+}
+
+@media (max-height: 740px) {
+  :root {
+    --auth-header-h: 3.5rem;
+    --auth-panel-py: 0.75rem;
+    --auth-title-size: 1.75rem;
+    --auth-section-gap: 1.25rem;
+    --auth-gap: 0.875rem;
+    --auth-control-h: 2.75rem;
+    --auth-otp-h: 3rem;
+    --showcase-scale: 0.68;
+    --showcase-py: 1rem;
+    --showcase-pb: 3rem;
+    --showcase-gap: 1.25rem;
+  }
+}
+
+/* Telas baixas (<= 880px de altura): some o que é só apoio. */
+@custom-variant short (@media (max-height: 880px));
+
+@utility bg-showcase {
+  background-image: linear-gradient(
+    165deg,
+    var(--showcase-from) 0%,
+    var(--showcase-to) 70%
+  );
+}
+
+/* Grade fina de pedalboard, só no painel lateral das telas de auth. */
+@utility bg-showcase-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  /* O Edge desenha um olho nativo em todo input de senha com texto; o
+     PasswordInput já tem o seu próprio botão de mostrar/ocultar. */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
   body {
     @apply bg-background text-foreground;
   }
   html {
     @apply font-sans;
+  }
+  /* Títulos: Archivo expandida (serigrafia de pedal). */
+  h1,
+  h2,
+  h3,
+  .font-heading {
+    font-family: var(--font-heading);
+    font-stretch: 118%;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 }
