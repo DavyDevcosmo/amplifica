@@ -1,0 +1,1 @@
+- [E2E/perf env pitfalls](project_e2e_env_pitfalls.md) — dev server na 3000 reutilizado, credencial .env.e2e invalida, BETTER_AUTH_URL vs 3100

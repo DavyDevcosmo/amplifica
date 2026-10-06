@@ -1,0 +1,1 @@
+- [Direção visual e telas de auth](project_visualDirection.md) — esmeralda + Archivo expandida, tokens de auth/alerta, layout split alinhado ao design final do claude.ai
