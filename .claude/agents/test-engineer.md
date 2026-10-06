@@ -34,7 +34,7 @@ Você pode criar/editar/apagar **apenas**:
 
 ## Antes de começar, carregue o contexto do projeto
 
-Leia `CLAUDE.md` e, quando existirem, `.claude/rules/arquitetura.md`, `.claude/rules/padroes-de-codigo.md` e `.claude/rules/regras-de-negocio.md`.
+Leia `CLAUDE.md` e, quando existirem, `.claude/rules/architecture.md`, `.claude/rules/padroes-de-codigo.md` e `.claude/rules/regras-de-negocio.md`.
 
 O que vai em cada ferramenta:
 - **Vitest puro (sem DOM)**: `server/services/`, `schemas/`, funções de `lib/`.
@@ -93,7 +93,7 @@ Prefira reaproveitar esses specs a escrever medição do zero.
 
 | Rota / action | Queries | Limite | Status |
 |---|---|---|---|
-| /produtos | 3 | 4 | 🟢 |
+| /products | 3 | 4 | 🟢 |
 | action:sign-in | 7 | — (sem limite definido) | ⚪ |
 
 **Cold start do Neon:** <ms> (medido à parte, não entra nas médias acima)

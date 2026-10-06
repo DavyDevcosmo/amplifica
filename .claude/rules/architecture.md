@@ -18,39 +18,39 @@ amplifica/
     │   ├── (public)/               # Loja aberta: SEO, cache agressivo
     │   │   ├── layout.tsx          # header/footer da loja
     │   │   ├── page.tsx            # home
-    │   │   ├── produtos/
+    │   │   ├── products/
     │   │   │   ├── page.tsx        # catálogo, filtros via searchParams (URL = estado compartilhável)
     │   │   │   └── [slug]/page.tsx
-    │   │   ├── busca/page.tsx
-    │   │   └── lojas/[sellerSlug]/page.tsx   # vitrine pública de cada vendedor
+    │   │   ├── search/page.tsx
+    │   │   └── stores/[sellerSlug]/page.tsx   # vitrine pública de cada vendedor
     │   ├── (auth)/
     │   │   ├── login/page.tsx
-    │   │   └── cadastro/page.tsx
+    │   │   └── signup/page.tsx
     │   ├── (customer)/             # Exige sessão de cliente
     │   │   ├── layout.tsx          # guard de UX: redirect se não logado
-    │   │   ├── carrinho/page.tsx
+    │   │   ├── cart/page.tsx
     │   │   ├── checkout/page.tsx
-    │   │   └── conta/
-    │   │       ├── perfil/page.tsx
-    │   │       └── pedidos/
+    │   │   └── account/
+    │   │       ├── profile/page.tsx
+    │   │       └── orders/
     │   │           ├── page.tsx
     │   │           └── [orderId]/page.tsx
     │   ├── (seller)/
-    │   │   └── vendedor/           # URL /vendedor/*
+    │   │   └── seller/           # URL /seller/*
     │   │       ├── layout.tsx      # sidebar do dashboard + guard role SELLER
     │   │       ├── page.tsx        # métricas
-    │   │       ├── produtos/
+    │   │       ├── products/
     │   │       │   ├── page.tsx
-    │   │       │   ├── novo/page.tsx
-    │   │       │   └── [id]/editar/page.tsx
-    │   │       ├── carteira/page.tsx     # saldo retido, disponível, extrato, saque
-    │   │       └── pedidos/page.tsx
+    │   │       │   ├── new/page.tsx
+    │   │       │   └── [id]/edit/page.tsx
+    │   │       ├── wallet/page.tsx     # saldo retido, disponível, extrato, saque
+    │   │       └── orders/page.tsx
     │   ├── (admin)/
     │   │   └── admin/              # URL /admin/*
     │   │       ├── layout.tsx      # guard role ADMIN
-    │   │       ├── vendedores/page.tsx   # aprovação/bloqueio de conta de vendedor
-    │   │       ├── produtos/page.tsx     # fila de moderação de produto novo
-    │   │       └── pedidos/page.tsx      # reembolsos, disputas
+    │   │       ├── sellers/page.tsx   # aprovação/bloqueio de conta de vendedor
+    │   │       ├── products/page.tsx     # fila de moderação de produto novo
+    │   │       └── orders/page.tsx      # reembolsos, disputas
     │   ├── api/
     │   │   └── webhooks/
     │   │       └── payments/route.ts     # Route Handlers só para o que PRECISA ser HTTP (webhooks, integrações)

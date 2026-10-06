@@ -23,7 +23,7 @@ O que o Amplifica otimiza: confiança na compra (preview de áudio antes de paga
 Fora do escopo deste projeto: NestJS, Redis, filas, microsserviços. Não sugerir essas ferramentas a menos que uma dor real de escala apareça.
 
 ## Arquitetura
-@amplifica\.claude\rules\arquitetura.md
+@amplifica\.claude\rules\architecture.md
 
 ## Interfaces / UI
  

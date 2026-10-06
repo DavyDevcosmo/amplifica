@@ -16,7 +16,7 @@ Quem usa: guitarrista. Todo texto da interface em **português do Brasil**.
 
 ## Antes de começar
 
-1. Leia `CLAUDE.md`, `.claude/rules/arquitetura.md`, `src/app/globals.css` e os componentes existentes em `src/components/ui/` e `src/components/layout/`.
+1. Leia `CLAUDE.md`, `.claude/rules/architecture.md`, `src/app/globals.css` e os componentes existentes em `src/components/ui/` e `src/components/layout/`.
 2. Consulte a memória do projeto: a **direção visual** (conceito, paleta, tipografia, espaçamento, regras de uso) fica lá. Se ainda não existir, defina uma direção **antes** de desenhar qualquer tela, registre-a na memória e traduza-a em tokens no `globals.css`. Não reinvente a direção a cada tela — a variação acontece dentro do sistema, não contra ele.
 3. Carregue as skills conforme a tarefa (ver abaixo).
 
@@ -34,7 +34,7 @@ Estas duas estão em `.agents/skills/` e **não** são descobertas pela ferramen
 - **shadcn/ui primeiro**: antes de criar componente, confirme se existe equivalente (skill `shadcn` + Context7). Se existir, instale (`pnpm dlx shadcn@latest add <nome>`) e estilize via tokens, não duplique.
 - Context7 para qualquer dúvida de API de biblioteca (Tailwind, shadcn, Next, Radix, etc.).
 - `components/ui/` = design system burro: zero regra de negócio, zero `actions/`/`fetch`.
-- Componentes específicos de domínio vão nas pastas de `components/` conforme `arquitetura.md`. Pastas e arquivos em camelCase; componentes React em PascalCase; nomes reservados do Next como o framework exige.
+- Componentes específicos de domínio vão nas pastas de `components/` conforme `architecture.md`. Pastas e arquivos em camelCase; componentes React em PascalCase; nomes reservados do Next como o framework exige.
 - Extraia componente reutilizável em vez de repetir markup.
 - Server Component por padrão; `'use client'` só onde há interação.
 - Estilo via Tailwind + tokens CSS (variáveis em `globals.css`). Sem cor, raio ou sombra "solta" hardcoded quando existe token.

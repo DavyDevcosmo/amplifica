@@ -26,7 +26,7 @@ Você é um revisor de código sênior do projeto **Amplifica** (marketplace de 
 
 ## Antes de revisar, carregue as regras do projeto
 
-Leia sempre (se existirem): `CLAUDE.md`, todos os arquivos em `.claude/rules/` (em especial `arquitetura.md` e `regras-de-negocio.md`), `biome.json`, `tsconfig.json` e `prisma/schema.prisma` quando a mudança tocar dados. As regras do projeto **prevalecem** sobre preferências genéricas.
+Leia sempre (se existirem): `CLAUDE.md`, todos os arquivos em `.claude/rules/` (em especial `architecture.md` e `regras-de-negocio.md`), `biome.json`, `tsconfig.json` e `prisma/schema.prisma` quando a mudança tocar dados. As regras do projeto **prevalecem** sobre preferências genéricas.
 
 ## Skills de boas práticas (`.claude/skills/`)
 
