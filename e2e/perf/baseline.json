@@ -1,0 +1,74 @@
+[
+  {
+    "name": "action:sign-in",
+    "valueMs": 831,
+    "budget": 1500,
+    "unit": "ms"
+  },
+  {
+    "name": "action:update-profile",
+    "valueMs": 328,
+    "budget": 1500,
+    "unit": "ms"
+  },
+  {
+    "name": "action:change-password",
+    "valueMs": 1340,
+    "budget": 1500,
+    "unit": "ms"
+  },
+  {
+    "name": "bundle:home",
+    "valueBytes": 345609,
+    "budget": 204800,
+    "unit": "bytes"
+  },
+  {
+    "name": "lcp:home",
+    "valueMs": 92,
+    "budget": 2500,
+    "unit": "ms"
+  },
+  {
+    "name": "bundle:login",
+    "valueBytes": 352101,
+    "budget": 204800,
+    "unit": "bytes"
+  },
+  {
+    "name": "lcp:login",
+    "valueMs": 124,
+    "budget": 2500,
+    "unit": "ms"
+  },
+  {
+    "name": "bundle:cadastro",
+    "valueBytes": 337265,
+    "budget": 204800,
+    "unit": "bytes"
+  },
+  {
+    "name": "lcp:cadastro",
+    "valueMs": 116,
+    "budget": 2500,
+    "unit": "ms"
+  },
+  {
+    "name": "nav:home-to-login",
+    "valueMs": 264,
+    "budget": 1000,
+    "unit": "ms"
+  },
+  {
+    "name": "nav:login-to-home",
+    "valueMs": 1002,
+    "budget": 1000,
+    "unit": "ms"
+  },
+  {
+    "name": "nav:perfil-to-home",
+    "valueMs": 190,
+    "budget": 1000,
+    "unit": "ms"
+  }
+]

@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# modelos sem segredo: o README manda copiar pra .env / .env.e2e
+!.env.example
+!.env.e2e.example
 
 # vercel
 .vercel
