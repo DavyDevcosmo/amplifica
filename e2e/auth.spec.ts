@@ -16,14 +16,14 @@ test('cadastro completo: cria conta, verifica, loga, desloga, redefine a senha e
   const password = 'senha1234'
   const newPassword = 'senhaNova1234'
 
-  await page.goto('/cadastro')
+  await page.goto('/signup')
   await page.getByLabel('Nome').fill('Guitarrista E2E')
   await page.getByLabel('E-mail').fill(email)
   await page.getByLabel('Senha', { exact: true }).fill(password)
   await page.getByLabel('Confirmar senha').fill(password)
   await page.getByRole('button', { name: 'Criar conta' }).click()
 
-  await expect(page).toHaveURL(/\/cadastro\/verificar/)
+  await expect(page).toHaveURL(/\/signup\/verify/)
   const otp = await waitForOtp(email)
   await page.locator('input[autocomplete="one-time-code"]').fill(otp)
   await page.getByRole('button', { name: 'Confirmar e-mail' }).click()
@@ -52,12 +52,12 @@ test('cadastro completo: cria conta, verifica, loga, desloga, redefine a senha e
   // a caixa fake guarda um arquivo por destinatário e sobrescreve: limpa antes
   // de pedir o código novo, pra não ler o OTP antigo do cadastro
   await clearMailbox()
-  await page.goto('/senha/esqueci')
+  await page.goto('/password/forgot')
   await page.getByLabel('E-mail').fill(email)
   await page.getByRole('button', { name: 'Enviar código' }).click()
 
   // passo 2: só o código. O e-mail fica no estado do fluxo, não na URL (sem ?token=)
-  await expect(page).toHaveURL(/\/senha\/codigo$/)
+  await expect(page).toHaveURL(/\/password\/code$/)
   await expect(page.getByLabel('Nova senha', { exact: true })).toHaveCount(0)
   await expect(page.getByText('Você tem 3 tentativas')).toBeVisible()
   await expect(page.getByRole('timer')).toContainText('O código expira em')
@@ -66,7 +66,7 @@ test('cadastro completo: cria conta, verifica, loga, desloga, redefine a senha e
   await page.locator('input[autocomplete="one-time-code"]').fill('000000')
   await page.getByRole('button', { name: 'Verificar código' }).click()
   await expect(page.getByText('Você tem mais 2 tentativas')).toBeVisible()
-  await expect(page).toHaveURL(/\/senha\/codigo$/)
+  await expect(page).toHaveURL(/\/password\/code$/)
 
   // código certo: vai pro passo 3, onde se escolhe a nova senha
   const resetOtp = await waitForOtp(email)
@@ -77,7 +77,7 @@ test('cadastro completo: cria conta, verifica, loga, desloga, redefine a senha e
   await otpInput.clear()
   await otpInput.fill(resetOtp)
   await page.getByRole('button', { name: 'Verificar código' }).click()
-  await expect(page).toHaveURL(/\/senha\/redefinir$/)
+  await expect(page).toHaveURL(/\/password\/reset$/)
   await expect(page.locator('input[autocomplete="one-time-code"]')).toHaveCount(0)
 
   await page.getByLabel('Nova senha', { exact: true }).fill(newPassword)
@@ -99,7 +99,7 @@ test('credencial errada: mostra erro e bloqueia depois de 5 tentativas', async (
   const password = 'senha1234'
 
   // cadastra e verifica só pra ter uma conta de verdade pra tentar errar a senha
-  await page.goto('/cadastro')
+  await page.goto('/signup')
   await page.getByLabel('Nome').fill('Alvo do Bloqueio')
   await page.getByLabel('E-mail').fill(email)
   await page.getByLabel('Senha', { exact: true }).fill(password)
@@ -158,22 +158,22 @@ test('login <-> cadastro: link de troca de tela dentro de <main> navega', async 
 }) => {
   await page.goto('/login')
   await page.getByRole('main').getByRole('link', { name: 'Criar conta' }).click()
-  await expect(page).toHaveURL('/cadastro')
+  await expect(page).toHaveURL('/signup')
 
   await page.getByRole('main').getByRole('link', { name: 'Entrar' }).click()
   await expect(page).toHaveURL('/login')
 })
 
-test('rota protegida: /conta/perfil sem sessão manda pro login e volta depois', async ({
+test('rota protegida: /account/profile sem sessão manda pro login e volta depois', async ({
   page,
 }) => {
   const email = uniqueEmail('protected')
   const password = 'senha1234'
 
-  await page.goto('/conta/perfil')
-  await expect(page).toHaveURL('/login?callbackUrl=%2Fconta%2Fperfil')
+  await page.goto('/account/profile')
+  await expect(page).toHaveURL('/login?callbackUrl=%2Faccount%2Fprofile')
 
-  await page.goto('/cadastro')
+  await page.goto('/signup')
   await page.getByLabel('Nome').fill('Rota Protegida')
   await page.getByLabel('E-mail').fill(email)
   await page.getByLabel('Senha', { exact: true }).fill(password)
@@ -192,13 +192,13 @@ test('rota protegida: /conta/perfil sem sessão manda pro login e volta depois',
   // falso negativo (a rota "protegida" aparenta não proteger nada).
   await expect(page.getByRole('link', { name: 'Entrar' })).toBeVisible()
 
-  await page.goto('/conta/perfil')
+  await page.goto('/account/profile')
   await expect(page).toHaveURL(/\/login\?callbackUrl=/)
   await page.getByLabel('E-mail').fill(email)
   await page.getByLabel('Senha', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar' }).click()
 
-  await expect(page).toHaveURL('/conta/perfil')
+  await expect(page).toHaveURL('/account/profile')
 })
 
 // Os testes abaixo não gravam no banco: só leem páginas públicas e mexem no
@@ -249,7 +249,7 @@ for (const viewport of [
   { width: 1440, height: 900 },
   { width: 1280, height: 720 },
 ]) {
-  for (const route of ['/login', '/cadastro']) {
+  for (const route of ['/login', '/signup']) {
     test(`layout de auth: ${route} em ${viewport.width}x${viewport.height} cobre a viewport e o scroll é da página, não do cartão`, async ({
       page,
     }) => {
@@ -276,17 +276,17 @@ for (const viewport of [
   }
 }
 
-test('/senha/redefinir sem estado (acesso direto) redireciona para /senha/esqueci', async ({
+test('/password/reset sem estado (acesso direto) redireciona para /password/forgot', async ({
   page,
 }) => {
-  await page.goto('/senha/redefinir')
-  await expect(page).toHaveURL(/\/senha\/esqueci$/)
+  await page.goto('/password/reset')
+  await expect(page).toHaveURL(/\/password\/forgot$/)
   await expect(page.getByRole('button', { name: 'Enviar código' })).toBeVisible()
 })
 
-test('/senha/codigo sem estado (acesso direto) redireciona para /senha/esqueci', async ({
+test('/password/code sem estado (acesso direto) redireciona para /password/forgot', async ({
   page,
 }) => {
-  await page.goto('/senha/codigo')
-  await expect(page).toHaveURL(/\/senha\/esqueci$/)
+  await page.goto('/password/code')
+  await expect(page).toHaveURL(/\/password\/forgot$/)
 })

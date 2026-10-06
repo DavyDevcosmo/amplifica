@@ -21,7 +21,7 @@ test.describe('performance de navegação', () => {
     // cria e verifica o usuário uma vez só — reaproveitado pelos 3 testes
     // abaixo, que fazem login/logout conforme precisam.
     const page = await browser.newPage()
-    await page.goto('/cadastro')
+    await page.goto('/signup')
     await page.getByLabel('Nome').fill('Perf Nav')
     await page.getByLabel('E-mail').fill(email)
     await page.getByLabel('Senha', { exact: true }).fill(password)
@@ -89,7 +89,7 @@ test.describe('performance de navegação', () => {
   test(`perfil → home (navegação até o h1 visível, meta ${budgets.navigationMs}ms)`, async ({
     page,
   }) => {
-    // precisa estar logado pra acessar /conta/perfil
+    // precisa estar logado pra acessar /account/profile
     await page.goto('/login')
     await page.getByLabel('E-mail').fill(email)
     await page.getByLabel('Senha', { exact: true }).fill(password)
@@ -97,7 +97,7 @@ test.describe('performance de navegação', () => {
     await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
 
     const valueMs = await measureMedian(async () => {
-      await page.goto('/conta/perfil')
+      await page.goto('/account/profile')
       // (customer)/layout.tsx não tem header/logo (só o guard de sessão) —
       // navega direto, em vez de clicar num link "Amplifica" que não existe
       // nessa rota.
@@ -106,7 +106,7 @@ test.describe('performance de navegação', () => {
     })
 
     await recordMetric({
-      name: 'nav:perfil-to-home',
+      name: 'nav:profile-to-home',
       valueMs,
       budget: budgets.navigationMs,
       unit: 'ms',

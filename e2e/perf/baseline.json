@@ -42,13 +42,13 @@
     "unit": "ms"
   },
   {
-    "name": "bundle:cadastro",
+    "name": "bundle:signup",
     "valueBytes": 337265,
     "budget": 204800,
     "unit": "bytes"
   },
   {
-    "name": "lcp:cadastro",
+    "name": "lcp:signup",
     "valueMs": 116,
     "budget": 2500,
     "unit": "ms"
@@ -66,7 +66,7 @@
     "unit": "ms"
   },
   {
-    "name": "nav:perfil-to-home",
+    "name": "nav:profile-to-home",
     "valueMs": 190,
     "budget": 1000,
     "unit": "ms"

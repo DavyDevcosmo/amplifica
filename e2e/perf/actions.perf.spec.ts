@@ -31,7 +31,7 @@ test.describe('performance de actions', () => {
   test.beforeAll(async ({ browser }) => {
     await clearMailbox()
     const page = await browser.newPage()
-    await page.goto('/cadastro')
+    await page.goto('/signup')
     await page.getByLabel('Nome').fill('Perf Action')
     await page.getByLabel('E-mail').fill(email)
     await page.getByLabel('Senha', { exact: true }).fill(password)
@@ -84,7 +84,7 @@ test.describe('performance de actions', () => {
     await page.getByLabel('Senha', { exact: true }).fill(password)
     await page.getByRole('button', { name: 'Entrar' }).click()
     await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
-    await page.goto('/conta/perfil')
+    await page.goto('/account/profile')
 
     let counter = 0
     const valueMs = await measureMedian(async () => {
@@ -116,7 +116,7 @@ test.describe('performance de actions', () => {
     await page.getByLabel('Senha', { exact: true }).fill(password)
     await page.getByRole('button', { name: 'Entrar' }).click()
     await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
-    await page.goto('/conta/perfil')
+    await page.goto('/account/profile')
 
     let currentPassword = password
     const valueMs = await measureMedian(async () => {

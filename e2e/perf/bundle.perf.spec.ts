@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import { budgets } from './budgets'
 import { recordMetric } from './perfReport'
 
-const ROUTES = ['/', '/login', '/cadastro'] as const
+const ROUTES = ['/', '/login', '/signup'] as const
 
 test.describe('performance de bundle e LCP', () => {
   for (const route of ROUTES) {
