@@ -73,6 +73,24 @@ pnpm db:seed          # popular banco local
 - Em mudança que toca **UI, navegação, banco ou auth**, rode também o agente `test-engineer` (escreve/roda testes e mede performance) e, se for uma mudança de performance, `pnpm perf` — compara contra `e2e/perf/baseline.json` e falha se estourar os budgets em `e2e/perf/budgets.ts`.
 - `pnpm perf` exige a branch Neon de teste configurada em `.env.e2e` (ver `.env.e2e.example`).
 
+## Commits
+
+Quando eu pedir para te mandar os commits, entregue neste formato:
+
+1. **Título do commit** e **descrição** em **português**, logo abaixo (para eu ler e entender).
+2. Em seguida, o(s) comando(s) `git commit` prontos para eu colar no terminal, **todo em inglês** (título e descrição), dentro de um bloco de código.
+
+Exemplo:
+
+```
+Título: Adiciona página de segurança da conta
+Descrição: Cria a tela de troca de senha e o status da conta Google.
+```
+
+```bash
+git commit -m "feat(account): add security page" -m "Add password change form and Google account status."
+```
+
 ## Nunca fazer
 
 - Nunca editar uma migration já aplicada — sempre criar uma nova
