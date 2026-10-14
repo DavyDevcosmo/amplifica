@@ -18,9 +18,10 @@
     "signIn": "Entrar",
     "signUp": "Criar conta",
     "openMenu": "Abrir menu",
-    "userMenu": "Menu do usuário",
     "profile": "Perfil",
-    "signOut": "Sair"
+    "security": "Segurança",
+    "signOut": "Sair",
+    "account": "Minha conta"
   },
   "theme": {
     "label": "Tema",
@@ -139,21 +140,48 @@
     }
   },
   "account": {
-    "meta": "Meu perfil — Amplifica",
-    "title": "Meu perfil",
-    "subtitle": "Seus dados de conta.",
-    "profileCard": "Foto e nome",
-    "passwordCard": "Senha",
-    "passwordCardDescription": "Ao trocar, suas outras sessões são desconectadas.",
-    "name": "Nome",
-    "saveName": "Salvar nome",
-    "saving": "Salvando…",
-    "profileUpdated": "Perfil atualizado",
-    "currentPassword": "Senha atual",
-    "newPassword": "Nova senha",
-    "confirmNewPassword": "Confirmar nova senha",
-    "changePassword": "Alterar senha",
-    "passwordChanged": "Senha alterada. Outras sessões foram desconectadas.",
+    "title": "Minha conta",
+    "subtitle": "Gerencie seu perfil e a segurança da sua conta.",
+    "navLabel": "Conta",
+    "profile": {
+      "meta": "Perfil — Amplifica",
+      "title": "Perfil",
+      "description": "Seus dados no Amplifica.",
+      "name": "Nome completo",
+      "namePlaceholder": "Como você quer ser chamado",
+      "email": "E-mail",
+      "save": "Salvar alterações",
+      "saving": "Salvando…",
+      "updated": "Perfil atualizado"
+    },
+    "security": {
+      "meta": "Segurança — Amplifica",
+      "password": {
+        "changeTitle": "Trocar senha",
+        "changeDescription": "Exigimos a senha atual para confirmar que é você.",
+        "setTitle": "Definir senha",
+        "setDescription": "Você entrou com o Google e ainda não tem uma senha. Defina uma para também entrar com e-mail e senha.",
+        "current": "Senha atual",
+        "currentPlaceholder": "Digite sua senha atual",
+        "new": "Nova senha",
+        "newPlaceholder": "Crie uma nova senha",
+        "newHint": "Use pelo menos 8 caracteres e diferente da atual.",
+        "confirm": "Confirmar nova senha",
+        "confirmPlaceholder": "Repita a nova senha",
+        "change": "Alterar senha",
+        "set": "Definir senha",
+        "saving": "Salvando…",
+        "changed": "Senha alterada",
+        "wasSet": "Senha definida"
+      },
+      "google": {
+        "title": "Conta Google",
+        "description": "Mostra se a sua conta tem login com o Google vinculado.",
+        "name": "Conta Google",
+        "linked": "Vinculada",
+        "notLinked": "Não vinculada"
+      }
+    },
     "changePhoto": "Trocar foto",
     "uploading": "Enviando…",
     "photoHint": "PNG, JPEG ou WEBP até 2 MB.",

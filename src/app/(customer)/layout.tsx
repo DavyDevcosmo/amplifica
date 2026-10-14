@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
 import type { ReactNode } from 'react'
+import { StoreHeader } from '@/components/layout/StoreHeader'
 import { requireUser } from '@/lib/auth'
 
 // Guard de UX: o `proxy.ts` já faz um redirect otimista por cookie, mas
@@ -11,5 +12,10 @@ export default async function CustomerLayout({ children }: { children: ReactNode
   const pathname = headersList.get('x-pathname') ?? undefined
   await requireUser(pathname)
 
-  return <>{children}</>
+  return (
+    <>
+      <StoreHeader />
+      <main className="flex-1">{children}</main>
+    </>
+  )
 }

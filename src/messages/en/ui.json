@@ -18,9 +18,10 @@
     "signIn": "Sign in",
     "signUp": "Create account",
     "openMenu": "Open menu",
-    "userMenu": "User menu",
     "profile": "Profile",
-    "signOut": "Sign out"
+    "security": "Security",
+    "signOut": "Sign out",
+    "account": "My account"
   },
   "theme": {
     "label": "Theme",
@@ -139,21 +140,48 @@
     }
   },
   "account": {
-    "meta": "My profile — Amplifica",
-    "title": "My profile",
-    "subtitle": "Your account details.",
-    "profileCard": "Photo and name",
-    "passwordCard": "Password",
-    "passwordCardDescription": "Changing it signs you out of your other sessions.",
-    "name": "Name",
-    "saveName": "Save name",
-    "saving": "Saving…",
-    "profileUpdated": "Profile updated",
-    "currentPassword": "Current password",
-    "newPassword": "New password",
-    "confirmNewPassword": "Confirm new password",
-    "changePassword": "Change password",
-    "passwordChanged": "Password changed. Your other sessions were signed out.",
+    "title": "My account",
+    "subtitle": "Manage your profile and your account security.",
+    "navLabel": "Account",
+    "profile": {
+      "meta": "Profile — Amplifica",
+      "title": "Profile",
+      "description": "Your details on Amplifica.",
+      "name": "Full name",
+      "namePlaceholder": "How you want to be called",
+      "email": "Email",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "updated": "Profile updated"
+    },
+    "security": {
+      "meta": "Security — Amplifica",
+      "password": {
+        "changeTitle": "Change password",
+        "changeDescription": "We ask for your current password to confirm it's you.",
+        "setTitle": "Set password",
+        "setDescription": "You signed in with Google and don't have a password yet. Set one to also sign in with email and password.",
+        "current": "Current password",
+        "currentPlaceholder": "Enter your current password",
+        "new": "New password",
+        "newPlaceholder": "Create a new password",
+        "newHint": "Use at least 8 characters, different from the current one.",
+        "confirm": "Confirm new password",
+        "confirmPlaceholder": "Repeat the new password",
+        "change": "Change password",
+        "set": "Set password",
+        "saving": "Saving…",
+        "changed": "Password changed",
+        "wasSet": "Password set"
+      },
+      "google": {
+        "title": "Google account",
+        "description": "Shows whether your account has Google sign-in linked.",
+        "name": "Google account",
+        "linked": "Linked",
+        "notLinked": "Not linked"
+      }
+    },
     "changePhoto": "Change photo",
     "uploading": "Uploading…",
     "photoHint": "PNG, JPEG or WEBP, up to 2 MB.",
