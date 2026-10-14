@@ -41,8 +41,8 @@ test.describe('performance de actions', () => {
     await page.locator('input[autocomplete="one-time-code"]').fill(otp)
     await page.getByRole('button', { name: 'Confirmar e-mail' }).click()
     await expect(page).toHaveURL('/')
-    await page.getByRole('button', { name: 'Menu do usuário' }).click()
-    await page.getByRole('menuitem', { name: 'Sair' }).click()
+    await page.getByRole('link', { name: 'Minha conta' }).click()
+    await page.getByRole('button', { name: 'Sair' }).click()
     await page.close()
   })
 
@@ -55,16 +55,14 @@ test.describe('performance de actions', () => {
         await waitForActionResponse(page, () =>
           page.getByRole('button', { name: 'Entrar' }).click(),
         )
-        await expect(
-          page.getByRole('button', { name: 'Menu do usuário' }),
-        ).toBeVisible()
+        await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()
       },
       3,
       // desloga fora do bloco medido — senão a métrica mede login + logout
       // juntos, inflando o número que devia refletir só o signInAction
       async () => {
-        await page.getByRole('button', { name: 'Menu do usuário' }).click()
-        await page.getByRole('menuitem', { name: 'Sair' }).click()
+        await page.getByRole('link', { name: 'Minha conta' }).click()
+        await page.getByRole('button', { name: 'Sair' }).click()
         await expect(page.getByRole('link', { name: 'Entrar' })).toBeVisible()
       },
     )
@@ -83,16 +81,16 @@ test.describe('performance de actions', () => {
     await page.getByLabel('E-mail').fill(email)
     await page.getByLabel('Senha', { exact: true }).fill(password)
     await page.getByRole('button', { name: 'Entrar' }).click()
-    await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()
     await page.goto('/account/profile')
 
     let counter = 0
     const valueMs = await measureMedian(async () => {
       counter += 1
       const name = `Perf Action ${counter}`
-      await page.getByLabel('Nome').fill(name)
+      await page.getByLabel('Nome completo').fill(name)
       const response = await waitForActionResponse(page, () =>
-        page.getByRole('button', { name: 'Salvar nome' }).click(),
+        page.getByRole('button', { name: 'Salvar alterações' }).click(),
       )
       expect(response.ok()).toBe(true)
       // o sonner empilha um toast por iteração sem remover o anterior a
@@ -115,8 +113,8 @@ test.describe('performance de actions', () => {
     await page.getByLabel('E-mail').fill(email)
     await page.getByLabel('Senha', { exact: true }).fill(password)
     await page.getByRole('button', { name: 'Entrar' }).click()
-    await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
-    await page.goto('/account/profile')
+    await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()
+    await page.goto('/account/security')
 
     let currentPassword = password
     const valueMs = await measureMedian(async () => {
@@ -129,7 +127,7 @@ test.describe('performance de actions', () => {
       )
       expect(response.ok()).toBe(true)
       await expect(
-        page.getByText('Senha alterada.', { exact: false }).last(),
+        page.getByText('Senha alterada', { exact: true }).last(),
       ).toBeVisible()
       currentPassword = newPassword
     }, 3)

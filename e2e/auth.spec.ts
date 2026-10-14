@@ -30,11 +30,11 @@ test('cadastro completo: cria conta, verifica, loga, desloga, redefine a senha e
 
   // autoSignInAfterVerification: cai logado direto na home
   await expect(page).toHaveURL('/')
-  await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()
 
   // desloga
-  await page.getByRole('button', { name: 'Menu do usuário' }).click()
-  await page.getByRole('menuitem', { name: 'Sair' }).click()
+  await page.getByRole('link', { name: 'Minha conta' }).click()
+  await page.getByRole('button', { name: 'Sair' }).click()
   await expect(page.getByRole('link', { name: 'Entrar' })).toBeVisible()
 
   // loga de novo com a senha original
@@ -45,8 +45,8 @@ test('cadastro completo: cria conta, verifica, loga, desloga, redefine a senha e
   await expect(page).toHaveURL('/')
 
   // desloga de novo pra testar o esqueci-a-senha
-  await page.getByRole('button', { name: 'Menu do usuário' }).click()
-  await page.getByRole('menuitem', { name: 'Sair' }).click()
+  await page.getByRole('link', { name: 'Minha conta' }).click()
+  await page.getByRole('button', { name: 'Sair' }).click()
   await expect(page.getByRole('link', { name: 'Entrar' })).toBeVisible()
 
   // a caixa fake guarda um arquivo por destinatário e sobrescreve: limpa antes
@@ -110,8 +110,8 @@ test('credencial errada: mostra erro e bloqueia depois de 5 tentativas', async (
   await page.getByRole('button', { name: 'Confirmar e-mail' }).click()
   await expect(page).toHaveURL('/')
 
-  await page.getByRole('button', { name: 'Menu do usuário' }).click()
-  await page.getByRole('menuitem', { name: 'Sair' }).click()
+  await page.getByRole('link', { name: 'Minha conta' }).click()
+  await page.getByRole('button', { name: 'Sair' }).click()
   await expect(page.getByRole('link', { name: 'Entrar' })).toBeVisible()
 
   await page.goto('/login')
@@ -184,8 +184,8 @@ test('rota protegida: /account/profile sem sessão manda pro login e volta depoi
   await page.getByRole('button', { name: 'Confirmar e-mail' }).click()
   await expect(page).toHaveURL('/')
 
-  await page.getByRole('button', { name: 'Menu do usuário' }).click()
-  await page.getByRole('menuitem', { name: 'Sair' }).click()
+  await page.getByRole('link', { name: 'Minha conta' }).click()
+  await page.getByRole('button', { name: 'Sair' }).click()
   // sem esperar a UI confirmar o logout, o goto abaixo pode disparar antes do
   // Set-Cookie que limpa a sessão chegar no browser — o navegador ainda leva
   // o cookie antigo (válido) pra essa próxima requisição, e o teste vira

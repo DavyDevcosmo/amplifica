@@ -31,8 +31,8 @@ test.describe('performance de navegação', () => {
     await page.locator('input[autocomplete="one-time-code"]').fill(otp)
     await page.getByRole('button', { name: 'Confirmar e-mail' }).click()
     await expect(page).toHaveURL('/')
-    await page.getByRole('button', { name: 'Menu do usuário' }).click()
-    await page.getByRole('menuitem', { name: 'Sair' }).click()
+    await page.getByRole('link', { name: 'Minha conta' }).click()
+    await page.getByRole('button', { name: 'Sair' }).click()
     await page.close()
   })
 
@@ -63,16 +63,14 @@ test.describe('performance de navegação', () => {
         await page.getByLabel('E-mail').fill(email)
         await page.getByLabel('Senha', { exact: true }).fill(password)
         await page.getByRole('button', { name: 'Entrar' }).click()
-        await expect(
-          page.getByRole('button', { name: 'Menu do usuário' }),
-        ).toBeVisible()
+        await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()
       },
       3,
       // desloga fora do bloco medido — senão a métrica mede login + logout
       // juntos, em vez de só a navegação login → home
       async () => {
-        await page.getByRole('button', { name: 'Menu do usuário' }).click()
-        await page.getByRole('menuitem', { name: 'Sair' }).click()
+        await page.getByRole('link', { name: 'Minha conta' }).click()
+        await page.getByRole('button', { name: 'Sair' }).click()
         await expect(page.getByRole('link', { name: 'Entrar' })).toBeVisible()
       },
     )
@@ -94,7 +92,7 @@ test.describe('performance de navegação', () => {
     await page.getByLabel('E-mail').fill(email)
     await page.getByLabel('Senha', { exact: true }).fill(password)
     await page.getByRole('button', { name: 'Entrar' }).click()
-    await expect(page.getByRole('button', { name: 'Menu do usuário' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Minha conta' })).toBeVisible()
 
     const valueMs = await measureMedian(async () => {
       await page.goto('/account/profile')

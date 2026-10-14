@@ -23,7 +23,10 @@ type MailboxEmail = {
  * `after()`) e devolve o conteúdo. Faz polling porque não há como "esperar"
  * um evento de escrita em arquivo de outro processo.
  */
-async function waitForEmail(to: string, timeoutMs = 10_000): Promise<MailboxEmail> {
+export async function waitForEmail(
+  to: string,
+  timeoutMs = 10_000,
+): Promise<MailboxEmail> {
   const file = mailboxFileFor(to)
   const start = Date.now()
 
