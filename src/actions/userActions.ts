@@ -15,10 +15,13 @@ import {
   type ConfirmAvatarInput,
   changePasswordSchema,
   confirmAvatarSchema,
+  type SetPasswordInput,
+  setPasswordSchema,
   type UpdateProfileInput,
   updateProfileSchema,
 } from '@/schemas/userSchema'
 import { confirmAvatar, createAvatarUpload } from '@/server/services/avatarService'
+import { notifyPasswordChanged } from '@/server/services/securityEmailService'
 
 export async function updateProfileAction(
   input: UpdateProfileInput,
@@ -58,8 +61,35 @@ export async function changePasswordAction(
       body: {
         currentPassword: parsed.data.currentPassword,
         newPassword: parsed.data.newPassword,
+        // sempre encerra as outras sessões; a atual continua ativa
         revokeOtherSessions: true,
       },
+      headers: await headers(),
+    })
+  } catch (error) {
+    return authFailure(error)
+  }
+
+  notifyPasswordChanged(session.user.email)
+  return ok(null)
+}
+
+// Só pra conta sem senha (entrou pelo Google). `setPassword` não existe no
+// client do Better Auth — por isso passa por aqui, no servidor.
+export async function setPasswordAction(
+  input: SetPasswordInput,
+): Promise<ActionResult<null>> {
+  const parsed = setPasswordSchema.safeParse(input)
+  if (!parsed.success) {
+    return invalidInputFailure(parsed.error.issues[0]?.message)
+  }
+
+  const session = await getSession()
+  if (!session) return sessionExpiredFailure()
+
+  try {
+    await auth.api.setPassword({
+      body: { newPassword: parsed.data.newPassword },
       headers: await headers(),
     })
     return ok(null)

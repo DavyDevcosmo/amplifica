@@ -2,13 +2,19 @@ import 'server-only'
 import { prisma } from '@/lib/prisma'
 
 /**
- * True quando o usuário tem uma senha própria (conta "credential" do Better
- * Auth). Usado pra esconder a troca de senha de quem só entrou pelo Google.
+ * Como o usuário entra na conta: `hasPassword` é a conta "credential" do
+ * Better Auth (senha própria) e `hasGoogle` o login social vinculado. Quem só
+ * entrou pelo Google não tem senha — a tela de segurança pede "definir" em vez
+ * de "trocar".
  */
-export async function hasCredentialAccount(userId: string) {
-  const account = await prisma.account.findFirst({
-    where: { userId, providerId: 'credential' },
-    select: { id: true },
+export async function getLoginMethods(userId: string) {
+  const accounts = await prisma.account.findMany({
+    where: { userId, providerId: { in: ['credential', 'google'] } },
+    select: { providerId: true },
   })
-  return Boolean(account)
+  const providers = new Set(accounts.map((account) => account.providerId))
+  return {
+    hasPassword: providers.has('credential'),
+    hasGoogle: providers.has('google'),
+  }
 }
