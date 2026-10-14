@@ -1,12 +1,6 @@
 import { z } from 'zod'
+import { personNameSchema } from '@/schemas/commonSchema'
 
-// Isomórfico: importado tanto pelo form (client) quanto pela action (server).
-// As mensagens de erro são CHAVES do namespace `errors` (src/messages/<locale>/
-// errors.json); quem exibe traduz (useTranslations/getTranslations).
-
-// O "confirmar senha" é só conferência de digitação: vale no form (client) e
-// NUNCA viaja pra action — por isso há dois schemas. Os `*FormSchema` incluem
-// o campo; os demais são o que a action recebe e valida.
 const confirmPasswordField = z.string().min(1, 'confirmPasswordRequired')
 
 function passwordsMatch(data: { password: string; confirmPassword: string }) {
@@ -19,7 +13,7 @@ const passwordsMismatch = {
 }
 
 export const signUpSchema = z.object({
-  name: z.string().trim().min(2, 'nameTooShort').max(120, 'nameTooLong'),
+  name: personNameSchema,
   email: z.email('emailInvalid'),
   password: z.string().min(8, 'passwordTooShort').max(128, 'passwordTooLong'),
 })
@@ -59,8 +53,6 @@ export const resetPasswordSchema = z.object({
 })
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>
 
-// Tela de nova senha: e-mail e código já vieram dos passos anteriores, então o
-// formulário só pede a senha e a confirmação.
 export const newPasswordFormSchema = resetPasswordSchema
   .pick({ password: true })
   .extend({ confirmPassword: confirmPasswordField })

@@ -1,5 +1,21 @@
 import { describe, expect, test } from 'vitest'
-import { safeCallbackUrl } from './utils'
+import { getInitials, safeCallbackUrl } from './utils'
+
+describe('getInitials', () => {
+  test('usa as duas primeiras palavras em maiúsculas', () => {
+    expect(getInitials('Maria Souza Lima')).toBe('MS')
+    expect(getInitials('maria souza')).toBe('MS')
+  })
+
+  test('aceita nome de uma palavra e espaços sobrando', () => {
+    expect(getInitials('Maria')).toBe('M')
+    expect(getInitials('  Maria   Souza ')).toBe('MS')
+  })
+
+  test('vazio vira string vazia', () => {
+    expect(getInitials('')).toBe('')
+  })
+})
 
 describe('safeCallbackUrl', () => {
   test('aceita caminho relativo normal', () => {

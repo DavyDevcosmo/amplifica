@@ -2,8 +2,6 @@ import { isAPIError } from 'better-auth/api'
 import { getTranslations } from 'next-intl/server'
 import { type ActionResult, fail } from '@/lib/actionResult'
 
-// Código de erro do Better Auth (ou nosso, como REGISTRATION_EXPIRED) -> chave
-// do namespace `errors` em src/messages/<locale>/errors.json.
 const MESSAGE_KEYS: Record<string, string> = {
   INVALID_EMAIL_OR_PASSWORD: 'invalidCredentials',
   USER_NOT_FOUND: 'invalidCredentials',
@@ -15,14 +13,10 @@ const MESSAGE_KEYS: Record<string, string> = {
   REGISTRATION_EXPIRED: 'registrationExpired',
   PASSWORD_TOO_SHORT: 'passwordTooShort',
   PASSWORD_TOO_LONG: 'passwordTooLong',
+  // senha atual errada na troca de senha (o form põe a mensagem no campo)
+  INVALID_PASSWORD: 'currentPasswordIncorrect',
 }
 
-/**
- * Falha de action traduzida a partir de um erro de `auth.api.*`. Nunca expõe
- * `error.message` cru: só códigos mapeados acima (ou LOGIN_LOCKED, cujo tempo
- * restante vem em `body.minutes`) viram texto; qualquer outro cai em
- * `actionFailed`. O `code` vai junto pra UI decidir o estado visual.
- */
 export async function authFailure(error: unknown): Promise<ActionResult<never>> {
   const t = await getTranslations('errors')
   if (isAPIError(error)) {

@@ -30,7 +30,7 @@ async function fillForm(
 ) {
   await user.type(
     screen.getByLabelText('Nome completo'),
-    overrides.name ?? 'Guitarrista',
+    overrides.name ?? 'Guitarrista Teste',
   )
   await user.type(
     screen.getByLabelText('E-mail'),
@@ -91,7 +91,7 @@ describe('SignUpForm', () => {
 
     await waitFor(() => {
       expect(signUpAction).toHaveBeenCalledWith({
-        name: 'Guitarrista',
+        name: 'Guitarrista Teste',
         email: 'user@example.com',
         password: 'senha1234',
       })

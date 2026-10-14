@@ -1,11 +1,13 @@
 export { cn } from 'cn'
 
-/**
- * Só aceita um caminho relativo que comece com "/" e não seja um protocolo
- * relativo disfarçado ("//evil.com" ou "/\evil.com", que o navegador trata
- * como "//evil.com"). Qualquer outra coisa vira "/" — evita open redirect em
- * `callbackUrl` vindo de query string.
- */
+export function getInitials(name: string): string {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join('')
+}
 export function safeCallbackUrl(value: string | null | undefined): string {
   if (!value) return '/'
   // navegadores ignoram tab/CR/LF ao normalizar uma URL relativa — sem tirar

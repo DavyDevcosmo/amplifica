@@ -12,7 +12,7 @@ import {
 describe('signUpFormSchema', () => {
   test('aceita dados válidos', () => {
     const result = signUpFormSchema.safeParse({
-      name: 'Guitarrista',
+      name: 'Guitarrista Teste',
       email: 'guitarrista@example.com',
       password: 'senha1234',
       confirmPassword: 'senha1234',
@@ -22,7 +22,7 @@ describe('signUpFormSchema', () => {
 
   test('rejeita quando as senhas não coincidem', () => {
     const result = signUpFormSchema.safeParse({
-      name: 'Guitarrista',
+      name: 'Guitarrista Teste',
       email: 'guitarrista@example.com',
       password: 'senha1234',
       confirmPassword: 'outrasenha',
@@ -35,7 +35,7 @@ describe('signUpFormSchema', () => {
 
   test('rejeita senha curta', () => {
     const result = signUpFormSchema.safeParse({
-      name: 'Guitarrista',
+      name: 'Guitarrista Teste',
       email: 'guitarrista@example.com',
       password: '123',
       confirmPassword: '123',
@@ -71,9 +71,9 @@ describe('signUpFormSchema', () => {
     }
   })
 
-  test('aceita nome com pelo menos 2 caracteres', () => {
+  test('aceita nome com 3 caracteres e 2 palavras', () => {
     const result = signUpFormSchema.safeParse({
-      name: 'Jo',
+      name: 'Jo S',
       email: 'guitarrista@example.com',
       password: 'senha1234',
       confirmPassword: 'senha1234',
@@ -81,9 +81,23 @@ describe('signUpFormSchema', () => {
     expect(result.success).toBe(true)
   })
 
-  test('rejeita e-mail inválido', () => {
+  test('rejeita nome de uma palavra só', () => {
     const result = signUpFormSchema.safeParse({
       name: 'Guitarrista',
+      email: 'guitarrista@example.com',
+      password: 'senha1234',
+      confirmPassword: 'senha1234',
+    })
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      const nameIssue = result.error.issues.find((issue) => issue.path[0] === 'name')
+      expect(nameIssue?.message).toBe('nameNeedsSurname')
+    }
+  })
+
+  test('rejeita e-mail inválido', () => {
+    const result = signUpFormSchema.safeParse({
+      name: 'Guitarrista Teste',
       email: 'não-é-email',
       password: 'senha1234',
       confirmPassword: 'senha1234',
@@ -181,7 +195,7 @@ describe('resetPasswordSchema', () => {
 describe('schemas da action (sem confirmPassword)', () => {
   test('signUpSchema descarta confirmPassword em vez de repassá-lo', () => {
     const result = signUpSchema.safeParse({
-      name: 'Guitarrista',
+      name: 'Guitarrista Teste',
       email: 'user@example.com',
       password: 'senha1234',
       confirmPassword: 'senha1234',
