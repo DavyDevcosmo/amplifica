@@ -6,7 +6,6 @@ export const updateProfileSchema = z.object({
 })
 export type UpdateProfileInput = z.infer<typeof updateProfileSchema>
 
-
 const confirmNewPasswordField = z.string().min(1, 'confirmPasswordRequired')
 
 function passwordsMatch(data: { newPassword: string; confirmNewPassword: string }) {

@@ -2,7 +2,6 @@ import { getTranslations } from 'next-intl/server'
 import type { ReactNode } from 'react'
 import { AccountNav } from '@/components/account/AccountNav'
 
-
 export default async function AccountLayout({ children }: { children: ReactNode }) {
   const t = await getTranslations('account')
 
