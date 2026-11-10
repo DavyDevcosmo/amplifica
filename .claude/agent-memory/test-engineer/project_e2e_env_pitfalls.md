@@ -1,16 +1,16 @@
 ---
 name: e2e-env-pitfalls
-description: Armadilhas ao rodar e2e/perf no Amplifica - servidor dev na 3000 reutilizado, .env.e2e com credencial Neon, BETTER_AUTH_URL vs porta 3100
+description: Armadilhas ao rodar e2e/perf no Amplifica - servidor dev do usuario na 3000 reutilizado, .env.e2e com credencial Neon invalida, como subir servidor isolado na 3100
 metadata:
   type: project
 ---
 
-Verificado em 2026-10-03:
-- `playwright.config.ts` usa `reuseExistingServer`: se ja existe `next dev` na porta 3000 (iniciado a mao, le `.env` = banco de dev `ep-frosty-math`, sem `E2E=true`), o e2e funcional bate nele e escreveria no banco de dev / mandaria e-mail pelo transport errado. Antes de rodar specs que gravam, checar `netstat -ano | grep :3000` e o dono do processo. So specs read-only (ex.: GET /login?senha=redefinida) sao seguros nesse cenario.
-- `.env.e2e` (host `ep-falling-pine-avyn1lh5`) retornou `28P01 password authentication failed` num `select 1` direto -> e2e e perf nao rodam ate o usuario regenerar a connection string da branch Neon `e2e`.
-- Nao fazer `source .env.e2e` no bash: a URL tem `&channel_binding` sem aspas e o `&` quebra a variavel. Usar `DOTENV_CONFIG_PATH=.env.e2e node -r dotenv/config node_modules/next/dist/bin/next start -p 3100`.
-- `.env.e2e` tem `BETTER_AUTH_URL=http://localhost:3000`, mas o perf sobe em 3100: possivel problema de origin/trustedOrigins no Better Auth (nao confirmado, o banco falhou antes).
-- `pnpm test:perf` sobrescreve `.perf-results/latest.json` mesmo em run falho (mistura metricas antigas e novas).
+Verificado em 2026-10-03 e de novo em 2026-11-09:
+- O usuario costuma deixar `next dev` rodando na 3000 (le `.env` = banco de dev `ep-cool-feather`). `playwright.config.ts` tem `reuseExistingServer`, entao `pnpm test:e2e` bateria nele. Checar `netstat -ano | grep :3000` antes. Nao matar o servidor do usuario.
+- Contorno que funcionou (2026-11-09): config temporaria no scratchpad que importa `playwright.config.ts`, troca baseURL pra 3100 e sobe `next start -p 3100` com `BETTER_AUTH_URL=http://localhost:3100`; build via launcher node que faz `dotenv.parse('.env.e2e')` e `spawnSync('pnpm exec next build', {env})`. `node -r dotenv/config` quebra o build (NODE_OPTIONS -r nao permitido em worker).
+- `.env.e2e` (host agora `ep-old-silence-av026bl7`; antes `ep-falling-pine`) continua dando `password authentication failed for user 'neondb_owner'` nos dois URLs. Nesse arquivo DATABASE_URL e o direto e DIRECT_URL e o pooler (invertido). Specs que gravam e perf nao rodam ate o usuario regenerar a senha da branch `e2e`.
+- Specs read-only (storefront, login/tema/idioma/layout, redirects sem sessao) rodam ok com essa credencial quebrada: sem cookie, getSession nao consulta o banco.
+- `pnpm test:perf` sobrescreve `.perf-results/latest.json` mesmo em run falho.
 
 **Why:** evitar gravar em banco errado e economizar diagnostico repetido.
-**How to apply:** rodar a checagem de porta 3000 e um `select 1` com a credencial do `.env.e2e` antes de qualquer e2e/perf.
+**How to apply:** antes de qualquer e2e/perf, checar porta 3000 e rodar `select 1` com as URLs do `.env.e2e`.

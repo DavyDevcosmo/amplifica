@@ -54,7 +54,7 @@ test.describe('performance de navegação', () => {
     expect(valueMs).toBeLessThan(budgets.navigationMs)
   })
 
-  test(`login → home logado (submit até o menu do usuário visível, meta ${budgets.navigationMs}ms)`, async ({
+  test(`login → home logado (submit até o link "Minha conta" visível, meta ${budgets.navigationMs}ms)`, async ({
     page,
   }) => {
     const valueMs = await measureMedian(
@@ -96,9 +96,8 @@ test.describe('performance de navegação', () => {
 
     const valueMs = await measureMedian(async () => {
       await page.goto('/account/profile')
-      // (customer)/layout.tsx não tem header/logo (só o guard de sessão) —
-      // navega direto, em vez de clicar num link "Amplifica" que não existe
-      // nessa rota.
+      // navega direto (goto), sem clicar no logo do cabeçalho: a métrica
+      // compara com a baseline, que foi medida assim.
       await page.goto('/')
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
     })
