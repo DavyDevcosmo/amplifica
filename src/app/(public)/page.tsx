@@ -1,7 +1,21 @@
+import { HomeHero } from '@/components/home/HomeHero'
+import { SellerBand } from '@/components/home/SellerBand'
+import { TrustStrip } from '@/components/home/TrustStrip'
+import { StoreHeader } from '@/components/layout/StoreHeader'
+import { CatalogSection } from '@/components/product/CatalogSection'
+// Dados de exemplo até existir server/queries/productQueries.ts.
+import { HOME_PRODUCTS, PEDALBOARD_BRANDS } from '@/components/product/sampleProducts'
+
 export default function Home() {
   return (
-    <div className="px-4 py-16">
-      <h1 className="font-heading text-2xl font-medium">helloo</h1>
-    </div>
+    <>
+      <StoreHeader variant="floating" />
+      <main className="flex-1">
+        <HomeHero />
+        <TrustStrip />
+        <CatalogSection products={HOME_PRODUCTS} brands={PEDALBOARD_BRANDS} />
+        <SellerBand />
+      </main>
+    </>
   )
 }
