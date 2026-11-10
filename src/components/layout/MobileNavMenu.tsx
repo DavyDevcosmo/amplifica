@@ -1,5 +1,6 @@
 'use client'
 
+import { MenuIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import {
@@ -11,10 +12,20 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
-import { MARKET_NAV } from './navItems'
+import { STORE_NAV } from './navItems'
 
 // Menu do cabeçalho em telas sem espaço para a navegação (abaixo de lg).
-export function MobileNavMenu({ className }: { className?: string }) {
+// O botão é um círculo de 44px: branco sobre noite (`onDark`) ou azul
+// sobre o painel branco do cabeçalho flutuante.
+export function MobileNavMenu({
+  signedIn = false,
+  onDark = false,
+  className,
+}: {
+  signedIn?: boolean
+  onDark?: boolean
+  className?: string
+}) {
   const t = useTranslations('nav')
 
   return (
@@ -22,20 +33,20 @@ export function MobileNavMenu({ className }: { className?: string }) {
       <DropdownMenuTrigger
         aria-label={t('openMenu')}
         className={cn(
-          'flex size-11 flex-col items-end justify-center gap-2 rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
+          'grid size-11 shrink-0 place-items-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-celeste focus-visible:ring-offset-2',
+          onDark ? 'bg-white text-preto' : 'bg-azul text-white hover:bg-azul-forte',
           className,
         )}
       >
-        <span aria-hidden className="block h-0.5 w-6.5 rounded-full bg-foreground" />
-        <span aria-hidden className="block h-0.5 w-4.5 rounded-full bg-foreground" />
+        <MenuIcon aria-hidden className="size-5" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-48">
+      <DropdownMenuContent align="end" className="min-w-56">
         <DropdownMenuGroup>
-          {MARKET_NAV.map((item) => (
+          {STORE_NAV.map((item) => (
             <DropdownMenuItem
               key={item.href}
               render={<Link href={item.href} />}
-              className="min-h-11"
+              className="min-h-11 type-label"
             >
               {t(item.key)}
             </DropdownMenuItem>
@@ -43,15 +54,29 @@ export function MobileNavMenu({ className }: { className?: string }) {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem render={<Link href="/login" />} className="min-h-11">
-            {t('signIn')}
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            render={<Link href="/signup" />}
-            className="min-h-11 font-semibold text-primary"
-          >
-            {t('signUp')}
-          </DropdownMenuItem>
+          {signedIn ? (
+            <DropdownMenuItem
+              render={<Link href="/account/profile" />}
+              className="min-h-11 type-label"
+            >
+              {t('account')}
+            </DropdownMenuItem>
+          ) : (
+            <>
+              <DropdownMenuItem
+                render={<Link href="/login" />}
+                className="min-h-11 type-label"
+              >
+                {t('signIn')}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                render={<Link href="/signup" />}
+                className="min-h-11 type-label"
+              >
+                {t('signUp')}
+              </DropdownMenuItem>
+            </>
+          )}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

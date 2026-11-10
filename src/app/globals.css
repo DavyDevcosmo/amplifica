@@ -21,10 +21,31 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-public-sans);
+  --font-sans: var(--font-archivo);
   --font-mono: var(--font-plex-mono);
   --font-heading: var(--font-archivo);
-  --font-wordmark: var(--font-bricolage);
+  --color-marinho: var(--marinho);
+  --color-marinho-claro: var(--marinho-claro);
+  --color-ardosia: var(--ardosia);
+  --color-celeste: var(--celeste);
+  --color-taupe: var(--taupe);
+  --color-areia: var(--areia);
+  --color-creme: var(--creme);
+  --color-preto: var(--preto);
+  --color-azul: var(--azul);
+  --color-azul-forte: var(--azul-forte);
+  --color-azul-claro: var(--azul-claro);
+  --color-azul-bebe: var(--azul-bebe);
+  --color-noite: var(--noite);
+  --color-noite-2: var(--noite-2);
+  --color-noite-3: var(--noite-3);
+  --color-nevoa: var(--nevoa);
+  --color-gelo: var(--gelo);
+  --color-tinta: var(--tinta);
+  --radius-tile: 12px;
+  --radius-cover: 14px;
+  --radius-card: 20px;
+  --radius-feature: 24px;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -82,51 +103,83 @@
   --shadow-float: var(--float-shadow);
 }
 
-/* Paleta esmeralda. Formato: light-dark(claro, escuro). */
+/*
+ * Design system Marinho. Formato: light-dark(claro, escuro).
+ * Cores de marca fixas (iguais nos dois temas) ficam em --marinho, --creme etc.
+ * e viram classes do Tailwind (bg-marinho, text-celeste...). Faixas de marca
+ * (hero, rodapé, garantias) usam essas cores direto; o resto usa os tokens
+ * semânticos abaixo.
+ */
 :root {
   color-scheme: light dark;
 
-  --background: light-dark(#edf1ef, #0b1411);
-  --foreground: light-dark(#0e1a16, #e6efeb);
-  --card: light-dark(#f8faf9, #121d19);
-  --card-foreground: light-dark(#0e1a16, #e6efeb);
-  --popover: light-dark(#f8faf9, #121d19);
-  --popover-foreground: light-dark(#0e1a16, #e6efeb);
-  --primary: light-dark(#0a7a5a, #34d3a0);
-  --primary-foreground: light-dark(#ffffff, #05140f);
-  /* Hover de botão/link primário: mais escuro no claro, mais claro no escuro. */
-  --primary-hover: light-dark(#0a4a38, #bfebdd);
-  --secondary: light-dark(#dee5e2, #1b2823);
-  --secondary-foreground: light-dark(#0e1a16, #e6efeb);
-  --muted: light-dark(#dee5e2, #1b2823);
-  --muted-foreground: light-dark(#46544e, #94a8a0);
-  --accent: light-dark(#d3ebe2, #12352b);
-  --accent-foreground: light-dark(#0a4a38, #bfebdd);
+  --marinho: #1c3352;
+  --marinho-claro: #2b4a6f;
+  --ardosia: #516d8d;
+  --celeste: #80a0c5;
+  --taupe: #7c6f67;
+  --areia: #c6ab95;
+  --creme: #f6f3f2;
+  --preto: #0d0d0d;
+
+  /*
+   * Paleta azul (v4): azul é a cor de ação (botão, chip selecionado, link);
+   * noite é o fundo das faixas escuras (hero, rodapé, painéis). Branco sobre
+   * azul dá 5,2:1; azul-claro sobre noite 6,9:1; névoa sobre noite 12:1.
+   */
+  --azul: #2563eb;
+  --azul-forte: #1d4ed8;
+  --azul-claro: #6b9bff;
+  --azul-bebe: #bcd4ff;
+  --noite: #0a1626;
+  --noite-2: #0f2138;
+  --noite-3: #142a47;
+  --nevoa: #c9d6e6;
+  --gelo: #dbe6ff;
+  /* Texto secundário escuro sobre branco (painel de compra): 8,4:1. */
+  --tinta: #3b4f68;
+
+  --background: light-dark(var(--creme), var(--preto));
+  --foreground: light-dark(var(--preto), #ffffff);
+  --card: light-dark(#ffffff, var(--marinho));
+  --card-foreground: light-dark(var(--preto), #ffffff);
+  --popover: light-dark(#ffffff, var(--marinho));
+  --popover-foreground: light-dark(var(--preto), #ffffff);
+  /* Ação principal: azul nos dois temas, escurece no hover. */
+  --primary: var(--azul);
+  --primary-foreground: #ffffff;
+  --primary-hover: var(--azul-forte);
+  --secondary: light-dark(#ebe6e4, #172a43);
+  --secondary-foreground: light-dark(var(--preto), #ffffff);
+  --muted: light-dark(#ebe6e4, #172a43);
+  /* Texto secundário: ardósia sobre creme/branco (4,8:1); celeste sobre preto (7,4:1) e marinho (4,7:1). */
+  --muted-foreground: light-dark(var(--ardosia), var(--celeste));
+  --accent: light-dark(#e3e9f1, var(--marinho-claro));
+  --accent-foreground: light-dark(var(--marinho), #ffffff);
   --destructive: light-dark(#c0351f, #ff7a66);
   /* Texto de erro: um tom abaixo da borda (--destructive) pra passar AA. */
-  --destructive-strong: light-dark(#a52a17, #ff7a66);
-  /* Avisos (Alert) em fundo suave. Os valores escuros são derivados. */
-  --destructive-soft: light-dark(#fcebe7, #2a1612);
+  --destructive-strong: light-dark(#a52a17, #ffa192);
+  --destructive-soft: light-dark(#fcebe7, #3a2027);
   --destructive-soft-foreground: light-dark(#7a1f10, #ffb4a6);
-  --destructive-soft-border: light-dark(#e9b4a9, #6b2a1f);
-  --info-soft: light-dark(#e6eef5, #13222d);
-  --info-soft-foreground: light-dark(#1f3a56, #a9c8e8);
-  --info-soft-border: light-dark(#b9cde0, #2b4a63);
-  --success-soft-border: light-dark(#a9d3c3, #1f4d3f);
-  --success: light-dark(#44700a, #b5d84a);
-  --success-foreground: light-dark(#ffffff, #0b1411);
-  --border: light-dark(#c5d0cb, #263530);
+  --destructive-soft-border: light-dark(#e9b4a9, #7a3a35);
+  --info-soft: light-dark(#e3e9f1, var(--marinho));
+  --info-soft-foreground: light-dark(var(--marinho), #dfe7f1);
+  --info-soft-border: light-dark(#b9c8da, #4a6a8f);
+  --success-soft-border: light-dark(#a9d3c3, #2f6b5a);
+  --success: light-dark(#2f6b3a, #9fd8a8);
+  --success-foreground: light-dark(#ffffff, var(--preto));
+  --border: light-dark(rgb(81 109 141 / 0.45), rgb(128 160 197 / 0.5));
   /* Borda forte de controles (campos, outline): >= 3:1 sobre o fundo. */
-  --input: light-dark(#75877f, #5a7068);
-  /* Fundo de campo: branco no claro, mesma cor da página no escuro. */
-  --field: light-dark(#ffffff, #0b1411);
-  --ring: color-mix(in srgb, var(--primary) 50%, transparent);
-  --chart-1: light-dark(#0a7a5a, #34d3a0);
-  --chart-2: light-dark(#9a6414, #e8b04a);
-  --chart-3: light-dark(#3b6fb6, #6fa3e8);
-  --chart-4: light-dark(#c0551f, #f07f5a);
-  --chart-5: light-dark(#5b6b64, #94a8a0);
-  --radius: 0.5rem;
+  --input: light-dark(var(--ardosia), var(--celeste));
+  /* Fundo de campo: branco no claro, mesma cor da página (preto) no escuro. */
+  --field: light-dark(#ffffff, var(--preto));
+  --ring: light-dark(var(--ardosia), var(--celeste));
+  --chart-1: light-dark(var(--marinho), #ffffff);
+  --chart-2: light-dark(var(--ardosia), var(--celeste));
+  --chart-3: light-dark(var(--taupe), var(--areia));
+  --chart-4: light-dark(var(--ardosia), var(--celeste));
+  --chart-5: light-dark(#8a97a8, #4a6a8f);
+  --radius: 0.75rem;
 
   --sidebar: var(--card);
   --sidebar-foreground: var(--card-foreground);
@@ -138,17 +191,17 @@
   --sidebar-ring: var(--ring);
 
   /* Player de preview: sempre painel escuro, nos dois temas. */
-  --player-bg: #121d19;
-  --player-foreground: #e6efeb;
-  --player-muted: #94a8a0;
-  --player-border: #5a7068;
-  --player-track: #5a7068;
-  --player-progress: #34d3a0;
+  --player-bg: var(--preto);
+  --player-foreground: #ffffff;
+  --player-muted: var(--celeste);
+  --player-border: var(--ardosia);
+  --player-track: var(--marinho);
+  --player-progress: #ffffff;
 
-  /* Painel lateral das telas de auth: verde-escuro fixo nos dois temas. */
-  --showcase-from: #12352b;
-  --showcase-to: #0b1411;
-  --float-shadow: 0 12px 36px light-dark(rgb(0 0 0 / 0.35), rgb(0 0 0 / 0.45));
+  /* Painel lateral das telas de auth: marinho fixo nos dois temas. */
+  --showcase-from: var(--marinho-claro);
+  --showcase-to: var(--marinho);
+  --float-shadow: 0 14px 28px -14px light-dark(rgb(13 13 13 / 0.35), rgb(0 0 0 / 0.5));
 }
 
 /* Override manual por classe, se um seletor de tema for adicionado. */
@@ -255,8 +308,35 @@
   h3,
   .font-heading {
     font-family: var(--font-heading);
-    font-stretch: 118%;
+    font-stretch: 125%;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
+}
+
+/* Título do Marinho: Archivo expandida, caixa alta. */
+@utility font-display {
+  font-family: var(--font-heading);
+  font-stretch: 125%;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Rótulo acima de título e de seção (eyebrow do Marinho). */
+@utility type-eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Rótulo de botão, chip e link de navegação. */
+@utility type-label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }

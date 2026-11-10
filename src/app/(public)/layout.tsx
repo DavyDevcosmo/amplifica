@@ -1,11 +1,13 @@
 import type { ReactNode } from 'react'
-import { StoreHeader } from '@/components/layout/StoreHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
 
+// O cabeçalho fica um nível abaixo: a home usa a versão flutuante (no próprio
+// page.tsx) e as demais telas a faixa sólida, via (store)/layout.tsx.
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <StoreHeader />
-      <main className="flex-1">{children}</main>
+      {children}
+      <SiteFooter />
     </>
   )
 }

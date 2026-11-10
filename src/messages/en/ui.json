@@ -6,7 +6,9 @@
     "verify": "Confirm your email — Amplifica",
     "forgot": "Reset password — Amplifica",
     "resetCode": "Enter the code — Amplifica",
-    "reset": "Set a new password — Amplifica"
+    "reset": "Set a new password — Amplifica",
+    "product": "{title} — Amplifica",
+    "sell": "Sell your presets — Amplifica"
   },
   "nav": {
     "main": "Main",
@@ -21,7 +23,12 @@
     "profile": "Profile",
     "security": "Security",
     "signOut": "Sign out",
-    "account": "My account"
+    "account": "My account",
+    "pedalboards": "Pedalboards",
+    "howItWorks": "How it works",
+    "becomeSeller": "Become a seller",
+    "sellerDashboard": "Seller dashboard",
+    "search": "Search"
   },
   "theme": {
     "label": "Theme",
@@ -37,7 +44,21 @@
   "footer": {
     "copyright": "© Amplifica. All rights reserved.",
     "terms": "Terms of use",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "tagline": "Marketplace for presets, IRs and captures for amp modelers.",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "company": "Amplifica",
+    "help": "Help",
+    "legal": "Legal",
+    "about": "About",
+    "contact": "Contact",
+    "howItWorks": "How it works",
+    "refunds": "Refunds",
+    "helpCenter": "Help center",
+    "refundPolicy": "Refund policy",
+    "legalLine": "© 2026 Amplifica",
+    "stripe": "Payments processed by Stripe"
   },
   "showcase": {
     "featured": "Featured",
@@ -188,5 +209,232 @@
     "invalidImage": "Invalid image",
     "uploadFailed": "Couldn't upload the image",
     "photoUpdated": "Photo updated"
+  },
+  "productCard": {
+    "listen": "Listen",
+    "pause": "Pause",
+    "listenLabel": "Listen to the {title} preview",
+    "pauseLabel": "Pause the {title} preview",
+    "buy": "Buy",
+    "download": "Download",
+    "buyLabel": "Buy {title}",
+    "downloadLabel": "Download {title}",
+    "free": "Free",
+    "founder": "Founding seller",
+    "kind": {
+      "PRESET": "Preset",
+      "IR": "IR",
+      "CAPTURE": "Capture"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Plug in the pedalboard.",
+      "titleAccent": "We handle the tone",
+      "lead": "Amplifica connects people who craft tones with people who want to play. Presets, IRs and captures.",
+      "imageAlt": "Black electric guitar leaning on an amp, with headphones and a cable on top of the amp and a pedalboard on the floor"
+    },
+    "trust": {
+      "label": "Guarantees",
+      "listenTitle": "Listen first",
+      "listenText": "Preview on every product",
+      "downloadTitle": "Instant download",
+      "downloadText": "In My purchases",
+      "refundTitle": "{days}-day refund",
+      "refundText": "Right of withdrawal",
+      "secureTitle": "Secure payment",
+      "secureText": "Processed by Stripe"
+    },
+    "catalog": {
+      "eyebrow": "01 · Which pedalboard do you play?",
+      "filterLabel": "Filter presets by pedalboard",
+      "all": "All",
+      "title": "Explore presets",
+      "titleFor": "Presets for {brand}",
+      "subtitle": "Listen to the preview right on the card.",
+      "seeAll": "See all",
+      "emptyTitle": "Nothing for {brand} yet",
+      "emptyText": "No presets for this pedalboard yet. Check the IRs, which work on any modeler.",
+      "emptyAction": "Show all pedalboards"
+    },
+    "sellBand": {
+      "badge": "Founder Program",
+      "title": "Sell your presets",
+      "text": "Publish presets, IRs and captures. No monthly fee, and early sellers pay 0% commission on their first {count} sales.",
+      "start": "Start selling",
+      "how": "How it works"
+    }
+  },
+  "product": {
+    "breadcrumb": "You are here",
+    "presets": "Presets",
+    "coverAlt": "{title} pack cover",
+    "discount": "{percent}% off",
+    "about": {
+      "eyebrow": "About the pack",
+      "title": "How these presets sound",
+      "includes": "What's in the pack"
+    },
+    "reviews": {
+      "title": "Reviews",
+      "note": "Only buyers can review this pack.",
+      "count": "{count, plural, one {# review} other {# reviews}}",
+      "summary": "{count, plural, one {# buyer review} other {# buyer reviews}}",
+      "distribution": "Rating distribution",
+      "starsLabel": "{rating} out of 5 stars",
+      "starRow": "{stars} ★",
+      "verified": "Verified purchase",
+      "seeAll": "See all {count} reviews",
+      "empty": "This pack is new in the store. Listen to the preview and, if you buy it, tell others how it sounded on your rig.",
+      "emptyTitle": "No reviews yet"
+    },
+    "buy": {
+      "label": "Buy",
+      "payment": "Credit card · payment processed by Stripe",
+      "buyNow": "Buy now",
+      "downloadFree": "Download for free",
+      "addToCart": "Add to cart",
+      "inCart": "In cart",
+      "instant": "Download right after payment",
+      "refund": "Refund within {days} days",
+      "byPrefix": "by",
+      "specsInfo": "Model and firmware stated by the seller"
+    },
+    "video": {
+      "title": "Hear it played",
+      "play": "Play YouTube video: {title}",
+      "placeholder": "[Seller video on YouTube]",
+      "source": "YouTube · {duration}"
+    },
+    "seller": {
+      "eyebrow": "Who made this pack",
+      "photo": "[Photo]",
+      "meta": "On Amplifica since {year} · {count} packs · {devices}",
+      "social": "{name} on social media",
+      "seeAll": "See all {count} packs",
+      "tiktok": "TikTok",
+      "spotify": "Spotify"
+    },
+    "related": {
+      "title": "You may also like",
+      "seeAll": "See all",
+      "eyebrow": "For your {brand}"
+    },
+    "specs": {
+      "label": "Specs",
+      "device": "Pedalboard",
+      "firmware": "Firmware",
+      "files": "Files",
+      "format": "Format",
+      "bySeller": "Stated by the seller"
+    }
+  },
+  "sell": {
+    "hero": {
+      "eyebrow": "Become a seller",
+      "title": "Your presets are worth something.",
+      "titleAccent": "Turn your tone into income.",
+      "lead": "Sell your presets, IRs and captures in a store built for musicians. No website to build, no monthly fee.",
+      "cta": "Start selling",
+      "free": "Free sign-up · you only pay when you sell",
+      "simulate": "Estimate earnings"
+    },
+    "identity": {
+      "photo": "[Photo: guitarist building presets on a pedalboard]",
+      "eyebrow": "You already have the main thing",
+      "title": "Your most valuable asset is your tone",
+      "text": "You spent hours dialing in presets other guitarists would love to play. Here they become products, with a page, an audio preview and checkout."
+    },
+    "steps": {
+      "eyebrow": "How it works",
+      "title": "Start selling in 3 steps",
+      "accountTitle": "Create your account",
+      "accountText": "Free sign-up as a seller.",
+      "publishTitle": "Publish",
+      "publishText": "Upload the files, record the audio preview and set the price.",
+      "sellTitle": "Sell",
+      "sellText": "Your store goes live for other musicians. Share the link and track sales on your dashboard."
+    },
+    "why": {
+      "eyebrow": "Why sell here",
+      "title": "Everything you need to sell your presets",
+      "storeTitle": "Ready-made store",
+      "storeText": "Sell without building your own website.",
+      "showcaseTitle": "Specialized showcase",
+      "showcaseText": "Your products in a marketplace made only of presets, IRs and captures.",
+      "priceTitle": "You set the price",
+      "priceText": "You decide what your work is worth.",
+      "deliveryTitle": "Automatic delivery",
+      "deliveryText": "Buyers download on their own after paying.",
+      "noFeeTitle": "No monthly fee",
+      "noFeeText": "You only pay when you sell."
+    },
+    "founder": {
+      "eyebrow": "Founder Program · pre-launch",
+      "title": "Be one of the first sellers on Amplifica",
+      "text": "Sellers who join before launch get terms that will not come back later.",
+      "badge": "Exclusive Founder badge on your profile and products",
+      "highlight": "Priority placement on the home page",
+      "commission": "0% commission on your first {count} sales, up to {days} days after launch",
+      "note": "The payment processing fee still applies.",
+      "cta": "I want to be a founder seller",
+      "cardTitle": "Your preset here",
+      "cardText": "An example of how your product shows up in the store, with the founder badge."
+    },
+    "simulator": {
+      "eyebrow": "Earnings simulator",
+      "title": "How much can your presets earn?",
+      "text": "Enter the price and how many sales you expect per month. The math shows what is left after commission and processing.",
+      "price": "Preset price",
+      "sales": "Sales per month",
+      "founder": "I'm a founding seller (0% on the first {count} sales)",
+      "gross": "Gross sales ({sales} × {price})",
+      "commission": "Amplifica commission ({percent}%)",
+      "commissionExempt": "Amplifica commission ({percent}%) · {exempt} exempt",
+      "processing": "Payment processing (estimated)",
+      "net": "You receive (estimated)",
+      "disclaimer": "A simulation with the values you picked, not a sales forecast. The processing fee is an estimate and varies with the payment method. Balance available to withdraw {days} days after each sale."
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Frequently asked questions",
+      "whatQ": "What is Amplifica?",
+      "whatA": "A marketplace of presets, IRs and captures for pedalboards, where musicians sell and buy.",
+      "siteQ": "Do I need my own website?",
+      "siteA": "No. You get a ready-made store inside Amplifica.",
+      "costQ": "How much does it cost to sell?",
+      "costA": "There is no monthly fee. The commission is {percent}% per sale, plus the payment processing fee.",
+      "priceQ": "Who sets the price?",
+      "priceA": "You do.",
+      "payoutQ": "When can I withdraw?",
+      "payoutA": "Your balance is available to withdraw {days} days after each sale.",
+      "deliveryQ": "How does the buyer get the preset?",
+      "deliveryA": "By download, in My purchases, right after payment.",
+      "followersQ": "Do I need a lot of followers?",
+      "followersA": "No. You can create your store and publish even without an audience.",
+      "ownQ": "Can I sell presets I already made?",
+      "ownA": "Yes, as long as they are your own work and you have the rights to sell them.",
+      "kindsQ": "What can I sell?",
+      "kindsA": "Presets, IRs, captures, MIDI patches and bundles."
+    },
+    "cta": {
+      "title": "Your tone is ready. All it needs is a storefront.",
+      "text": "Free sign-up, no monthly fee: you only pay when you sell.",
+      "button": "Start selling"
+    },
+    "publishPreview": {
+      "label": "Preview of the publish product screen",
+      "title": "New product",
+      "draft": "Draft",
+      "name": "Product name",
+      "namePlaceholder": "E.g. Plexi 68 for Helix",
+      "device": "Pedalboard and firmware",
+      "devicePlaceholder": "Select the model",
+      "price": "Price",
+      "pricePlaceholder": "R$",
+      "files": "Preset files",
+      "audio": "Audio preview",
+      "publish": "Publish"
+    }
   }
 }

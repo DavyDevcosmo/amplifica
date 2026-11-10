@@ -1,5 +1,6 @@
 import { headers } from 'next/headers'
 import type { ReactNode } from 'react'
+import { SiteFooter } from '@/components/layout/SiteFooter'
 import { StoreHeader } from '@/components/layout/StoreHeader'
 import { requireUser } from '@/lib/auth'
 
@@ -16,6 +17,7 @@ export default async function CustomerLayout({ children }: { children: ReactNode
     <>
       <StoreHeader />
       <main className="flex-1">{children}</main>
+      <SiteFooter />
     </>
   )
 }

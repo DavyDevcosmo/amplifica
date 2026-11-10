@@ -17,6 +17,11 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'text-primary underline-offset-4 hover:underline',
+        // Botão branco sobre faixa escura (marinho, preto, foto) nos dois temas.
+        inverse: 'bg-white text-preto hover:bg-creme',
+        // Contorno de 1.5px no tom do texto (secundário sobre fundo claro).
+        'outline-strong':
+          'border-[1.5px] border-current bg-transparent hover:bg-foreground/5',
       },
       size: {
         // Alvo de toque: 44px (h-11) no mobile; volta a ficar denso em md+.
@@ -36,6 +41,10 @@ const buttonVariants = cva(
         'icon-sm':
           'size-11 rounded-[min(var(--radius-md),12px)] md:size-8 in-data-[slot=button-group]:rounded-lg',
         'icon-lg': 'size-11',
+        // Pílulas do Marinho: rótulo em caixa alta, tracking largo.
+        pill: 'h-11 gap-2 rounded-full px-5 type-label',
+        'pill-lg':
+          'h-14 gap-2.5 rounded-full px-7 text-[0.8125rem] leading-4 font-bold tracking-[0.12em] uppercase',
       },
     },
     defaultVariants: {

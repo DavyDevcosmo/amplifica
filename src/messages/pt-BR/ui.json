@@ -6,7 +6,9 @@
     "verify": "Confirme seu e-mail — Amplifica",
     "forgot": "Recuperar senha — Amplifica",
     "resetCode": "Digite o código — Amplifica",
-    "reset": "Redefinir senha — Amplifica"
+    "reset": "Redefinir senha — Amplifica",
+    "product": "{title} — Amplifica",
+    "sell": "Venda seus presets — Amplifica"
   },
   "nav": {
     "main": "Principal",
@@ -21,7 +23,12 @@
     "profile": "Perfil",
     "security": "Segurança",
     "signOut": "Sair",
-    "account": "Minha conta"
+    "account": "Minha conta",
+    "pedalboards": "Pedaleiras",
+    "howItWorks": "Como funciona",
+    "becomeSeller": "Seja vendedor",
+    "sellerDashboard": "Painel do vendedor",
+    "search": "Buscar"
   },
   "theme": {
     "label": "Tema",
@@ -37,7 +44,21 @@
   "footer": {
     "copyright": "© Amplifica. Todos os direitos reservados.",
     "terms": "Termos de uso",
-    "privacy": "Privacidade"
+    "privacy": "Privacidade",
+    "tagline": "Marketplace de presets, IRs e captures para pedaleiras.",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "company": "Amplifica",
+    "help": "Ajuda",
+    "legal": "Legal",
+    "about": "Sobre",
+    "contact": "Contato",
+    "howItWorks": "Como funciona",
+    "refunds": "Reembolsos",
+    "helpCenter": "Central de ajuda",
+    "refundPolicy": "Política de reembolso",
+    "legalLine": "© 2026 Amplifica",
+    "stripe": "Pagamentos processados pela Stripe"
   },
   "showcase": {
     "featured": "Em destaque",
@@ -188,5 +209,232 @@
     "invalidImage": "Imagem inválida",
     "uploadFailed": "Falha ao enviar a imagem",
     "photoUpdated": "Foto atualizada"
+  },
+  "productCard": {
+    "listen": "Ouvir",
+    "pause": "Pausar",
+    "listenLabel": "Ouvir prévia de {title}",
+    "pauseLabel": "Pausar prévia de {title}",
+    "buy": "Comprar",
+    "download": "Baixar",
+    "buyLabel": "Comprar {title}",
+    "downloadLabel": "Baixar {title}",
+    "free": "Grátis",
+    "founder": "Vendedor fundador",
+    "kind": {
+      "PRESET": "Preset",
+      "IR": "IR",
+      "CAPTURE": "Capture"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Liga a pedaleira.",
+      "titleAccent": "O som a gente resolve",
+      "lead": "O Amplifica junta quem cria sons com quem quer tocar. Presets, IRs e captures.",
+      "imageAlt": "Guitarra elétrica preta apoiada num amplificador, com fone de ouvido e cabo sobre o amp e uma pedaleira no chão"
+    },
+    "trust": {
+      "label": "Garantias",
+      "listenTitle": "Ouça antes",
+      "listenText": "Prévia em todo produto",
+      "downloadTitle": "Download na hora",
+      "downloadText": "Em Minhas compras",
+      "refundTitle": "Reembolso em {days} dias",
+      "refundText": "Direito de arrependimento",
+      "secureTitle": "Pagamento seguro",
+      "secureText": "Processado pela Stripe"
+    },
+    "catalog": {
+      "eyebrow": "01 · Qual é a sua pedaleira?",
+      "filterLabel": "Filtrar presets por pedaleira",
+      "all": "Todas",
+      "title": "Explore os presets",
+      "titleFor": "Presets para {brand}",
+      "subtitle": "Ouça a prévia direto no card.",
+      "seeAll": "Ver todos",
+      "emptyTitle": "Nada para {brand} ainda",
+      "emptyText": "Ainda não há presets para essa pedaleira. Veja os IRs, que funcionam em qualquer modelador.",
+      "emptyAction": "Ver todas as pedaleiras"
+    },
+    "sellBand": {
+      "badge": "Programa Fundador",
+      "title": "Venda seus presets",
+      "text": "Publique presets, IRs e captures. Sem mensalidade, e os primeiros vendedores têm 0% de comissão nas {count} primeiras vendas.",
+      "start": "Começar a vender",
+      "how": "Como funciona"
+    }
+  },
+  "product": {
+    "breadcrumb": "Você está em",
+    "presets": "Presets",
+    "coverAlt": "Capa do pack {title}",
+    "discount": "{percent}% de desconto",
+    "about": {
+      "eyebrow": "Sobre o pack",
+      "title": "Como esses presets soam",
+      "includes": "O que vem no pack"
+    },
+    "reviews": {
+      "title": "Avaliações",
+      "note": "Só quem comprou o pack pode avaliar.",
+      "count": "{count, plural, one {# avaliação} other {# avaliações}}",
+      "summary": "{count, plural, one {# avaliação de comprador} other {# avaliações de compradores}}",
+      "distribution": "Distribuição das notas",
+      "starsLabel": "{rating} de 5 estrelas",
+      "starRow": "{stars} ★",
+      "verified": "Compra verificada",
+      "seeAll": "Ver as {count} avaliações",
+      "empty": "Este pack é novo na loja. Ouça a prévia e, se comprar, conte como ele soou no seu equipamento.",
+      "emptyTitle": "Ainda sem avaliações"
+    },
+    "buy": {
+      "label": "Comprar",
+      "payment": "Cartão de crédito · pagamento processado pela Stripe",
+      "buyNow": "Comprar agora",
+      "downloadFree": "Baixar grátis",
+      "addToCart": "Adicionar ao carrinho",
+      "inCart": "No carrinho",
+      "instant": "Download logo após o pagamento",
+      "refund": "Reembolso em até {days} dias",
+      "byPrefix": "por",
+      "specsInfo": "Modelo e firmware informados pelo vendedor"
+    },
+    "video": {
+      "title": "Veja tocando",
+      "play": "Reproduzir vídeo do YouTube: {title}",
+      "placeholder": "[Vídeo do vendedor no YouTube]",
+      "source": "YouTube · {duration}"
+    },
+    "seller": {
+      "eyebrow": "Quem criou este pack",
+      "photo": "[Foto]",
+      "meta": "Na Amplifica desde {year} · {count} packs · {devices}",
+      "social": "Redes sociais de {name}",
+      "seeAll": "Ver os {count} packs",
+      "tiktok": "TikTok",
+      "spotify": "Spotify"
+    },
+    "related": {
+      "title": "Você também vai gostar",
+      "seeAll": "Ver todos",
+      "eyebrow": "Para a sua {brand}"
+    },
+    "specs": {
+      "label": "Ficha técnica",
+      "device": "Pedaleira",
+      "firmware": "Firmware",
+      "files": "Arquivos",
+      "format": "Formato",
+      "bySeller": "Informado pelo vendedor"
+    }
+  },
+  "sell": {
+    "hero": {
+      "eyebrow": "Seja vendedor",
+      "title": "Seus presets têm valor.",
+      "titleAccent": "Transforme seu som em renda.",
+      "lead": "Venda seus presets, IRs e captures numa loja feita para músicos. Sem criar site, sem mensalidade.",
+      "cta": "Começar a vender",
+      "free": "Cadastro gratuito · você só paga quando vende",
+      "simulate": "Simular ganhos"
+    },
+    "identity": {
+      "photo": "[Foto: guitarrista criando presets na pedaleira]",
+      "eyebrow": "Você já tem o principal",
+      "title": "O ativo mais importante é o seu som",
+      "text": "Você passou horas ajustando presets que outros guitarristas gostariam de tocar. Aqui eles viram produto: com página, prévia em áudio e pagamento."
+    },
+    "steps": {
+      "eyebrow": "Como funciona",
+      "title": "Comece a vender em 3 passos",
+      "accountTitle": "Crie sua conta",
+      "accountText": "Cadastro gratuito, como vendedor.",
+      "publishTitle": "Publique",
+      "publishText": "Suba os arquivos, grave a prévia em áudio e defina o preço.",
+      "sellTitle": "Venda",
+      "sellText": "Sua loja fica no ar para outros músicos. Divulgue o link e acompanhe as vendas no painel."
+    },
+    "why": {
+      "eyebrow": "Por que vender aqui",
+      "title": "Tudo o que você precisa para vender seus presets",
+      "storeTitle": "Loja pronta",
+      "storeText": "Venda sem precisar criar um site próprio.",
+      "showcaseTitle": "Vitrine especializada",
+      "showcaseText": "Seus produtos num marketplace só de presets, IRs e captures.",
+      "priceTitle": "Preço é com você",
+      "priceText": "Você define quanto vale o seu trabalho.",
+      "deliveryTitle": "Entrega automática",
+      "deliveryText": "O comprador baixa sozinho depois de pagar.",
+      "noFeeTitle": "Sem mensalidade",
+      "noFeeText": "Você só paga quando vende."
+    },
+    "founder": {
+      "eyebrow": "Programa Fundador · pré-lançamento",
+      "title": "Seja um dos primeiros vendedores do Amplifica",
+      "text": "Quem entra antes do lançamento ganha condições que não voltam depois.",
+      "badge": "Selo exclusivo de Fundador no perfil e nos produtos",
+      "highlight": "Prioridade de destaque na home",
+      "commission": "0% de comissão nas suas {count} primeiras vendas, até {days} dias após o lançamento",
+      "note": "A taxa de processamento do pagamento continua sendo aplicada.",
+      "cta": "Quero ser vendedor fundador",
+      "cardTitle": "Seu preset aqui",
+      "cardText": "Exemplo de como o seu produto aparece na loja, com o selo de fundador."
+    },
+    "simulator": {
+      "eyebrow": "Simulador de ganhos",
+      "title": "Quanto seus presets podem render?",
+      "text": "Coloque o preço e quantas vendas você imagina por mês. A conta mostra o que sobra depois da comissão e do processamento.",
+      "price": "Preço do preset",
+      "sales": "Vendas no mês",
+      "founder": "Sou vendedor fundador (0% nas {count} primeiras vendas)",
+      "gross": "Vendas brutas ({sales} × {price})",
+      "commission": "Comissão Amplifica ({percent}%)",
+      "commissionExempt": "Comissão Amplifica ({percent}%) · {exempt} isentas",
+      "processing": "Processamento do pagamento (estimado)",
+      "net": "Você recebe (estimado)",
+      "disclaimer": "Simulação com os valores que você escolheu, não é previsão de vendas. A taxa de processamento é estimada e varia com a forma de pagamento. Saldo disponível para saque {days} dias após cada venda."
+    },
+    "faq": {
+      "eyebrow": "Dúvidas",
+      "title": "Perguntas frequentes",
+      "whatQ": "O que é o Amplifica?",
+      "whatA": "Um marketplace de presets, IRs e captures para pedaleiras, onde músicos vendem e compram.",
+      "siteQ": "Preciso ter um site próprio?",
+      "siteA": "Não. Você ganha uma loja pronta dentro do Amplifica.",
+      "costQ": "Quanto custa vender?",
+      "costA": "Não há mensalidade. A comissão é de {percent}% por venda, mais a taxa de processamento do pagamento.",
+      "priceQ": "Quem define o preço?",
+      "priceA": "Você.",
+      "payoutQ": "Quando posso sacar?",
+      "payoutA": "O saldo fica disponível para saque {days} dias após cada venda.",
+      "deliveryQ": "Como o comprador recebe o preset?",
+      "deliveryA": "Por download, na área Minhas compras, logo após o pagamento.",
+      "followersQ": "Preciso ter muitos seguidores?",
+      "followersA": "Não. Você pode criar a loja e publicar mesmo sem audiência.",
+      "ownQ": "Posso vender presets que já criei?",
+      "ownA": "Sim, desde que sejam autorais e você tenha os direitos para vendê-los.",
+      "kindsQ": "Quais produtos posso vender?",
+      "kindsA": "Presets, IRs, captures, patches MIDI e bundles."
+    },
+    "cta": {
+      "title": "Seu som já está pronto. Falta a vitrine.",
+      "text": "Cadastro gratuito, sem mensalidade: você só paga quando vende.",
+      "button": "Começar a vender"
+    },
+    "publishPreview": {
+      "label": "Prévia da tela de publicar produto",
+      "title": "Novo produto",
+      "draft": "Rascunho",
+      "name": "Nome do produto",
+      "namePlaceholder": "Ex.: Plexi 68 para Helix",
+      "device": "Pedaleira e firmware",
+      "devicePlaceholder": "Selecione o modelo",
+      "price": "Preço",
+      "pricePlaceholder": "R$",
+      "files": "Arquivos do preset",
+      "audio": "Prévia em áudio",
+      "publish": "Publicar"
+    }
   }
 }
