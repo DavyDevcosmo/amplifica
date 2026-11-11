@@ -1,9 +1,8 @@
 import 'server-only'
 import { randomUUID } from 'node:crypto'
-import { DeleteObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3'
 import { env } from '@/lib/env'
 import { prisma } from '@/lib/prisma'
-import { createPresignedPutUrl, publicUrlFor, r2Client } from '@/lib/r2'
+import { createPresignedPutUrl, deleteObject, headObject, publicUrlFor } from '@/lib/r2'
 
 export const MAX_AVATAR_BYTES = 2 * 1024 * 1024 // 2 MB
 
@@ -24,6 +23,14 @@ export function isAllowedContentType(value: string): value is AllowedContentType
 
 export function isValidAvatarSize(size: number): boolean {
   return size > 0 && size <= MAX_AVATAR_BYTES
+}
+
+// Avatar mora no bucket público (a URL vai direto no <img>).
+function publicBucket() {
+  if (!env.R2_PUBLIC_BUCKET) {
+    throw new Error('R2 não configurado (faltam variáveis de ambiente)')
+  }
+  return env.R2_PUBLIC_BUCKET
 }
 
 function avatarKeyPrefix(userId: string) {
@@ -49,7 +56,7 @@ export async function createAvatarUpload(
 
   const extension = ALLOWED_CONTENT_TYPES[contentType]
   const key = `${avatarKeyPrefix(userId)}${randomUUID()}.${extension}`
-  const uploadUrl = await createPresignedPutUrl(key, contentType, size)
+  const uploadUrl = await createPresignedPutUrl(publicBucket(), key, contentType, size)
   return { uploadUrl, key }
 }
 
@@ -62,29 +69,23 @@ export async function confirmAvatar(userId: string, key: string) {
   if (!key.startsWith(avatarKeyPrefix(userId))) {
     throw new Error('Chave de avatar não pertence a este usuário')
   }
-  if (!r2Client) {
-    throw new Error('R2 não configurado (faltam variáveis de ambiente)')
-  }
+  const bucket = publicBucket()
 
   // Confere que o upload aconteceu de verdade e respeitou o limite — a URL
   // pré-assinada só *deveria* impedir um PUT maior, mas isso depende de o R2
   // de fato validar o Content-Length assinado; sem essa checagem aqui,
   // `user.image` podia apontar pra uma chave inexistente ou maior que o
   // limite sem ninguém perceber.
-  const head = await r2Client
-    .send(new HeadObjectCommand({ Bucket: env.R2_PUBLIC_BUCKET, Key: key }))
-    .catch(() => null)
-  if (!head?.ContentLength || head.ContentLength > MAX_AVATAR_BYTES) {
+  const head = await headObject(bucket, key)
+  if (!head?.contentLength || head.contentLength > MAX_AVATAR_BYTES) {
     // O arquivo já foi parar no bucket (o PUT pré-assinado aconteceu antes
     // dessa checagem) — se não apagar aqui, fica lixo órfão em
     // avatars/{userId}/ pra sempre, já que `user.image` nunca vai apontar
     // pra essa chave.
     if (head) {
-      await r2Client
-        .send(new DeleteObjectCommand({ Bucket: env.R2_PUBLIC_BUCKET, Key: key }))
-        .catch((error) =>
-          console.error('[avatarService] falha ao apagar upload rejeitado', error),
-        )
+      await deleteObject(bucket, key).catch((error) =>
+        console.error('[avatarService] falha ao apagar upload rejeitado', error),
+      )
     }
     throw new Error('Upload não encontrado ou maior que o limite permitido')
   }
@@ -102,12 +103,10 @@ export async function confirmAvatar(userId: string, key: string) {
       ? previousImage.slice(env.R2_PUBLIC_URL.length + 1)
       : null
 
-  if (previousKey && r2Client) {
-    await r2Client
-      .send(new DeleteObjectCommand({ Bucket: env.R2_PUBLIC_BUCKET, Key: previousKey }))
-      .catch((error) =>
-        console.error('[avatarService] falha ao apagar avatar antigo', error),
-      )
+  if (previousKey) {
+    await deleteObject(bucket, previousKey).catch((error) =>
+      console.error('[avatarService] falha ao apagar avatar antigo', error),
+    )
   }
 
   return publicUrlFor(key)

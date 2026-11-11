@@ -28,8 +28,15 @@ const envSchema = z
     R2_SECRET_ACCESS_KEY: z.string().min(1).optional(),
     R2_PUBLIC_BUCKET: z.string().min(1).optional(),
     R2_PUBLIC_URL: z.url().optional(),
+    // Bucket privado dos entregáveis (nunca público). Sem ele, o upload de
+    // arquivos de produto fica indisponível; o de avatar continua.
+    R2_PRIVATE_BUCKET: z.string().min(1).optional(),
 
     CRON_SECRET: z.string().min(1).optional(),
+
+    // Início do Programa Fundador (ISO 8601). Sem ele, o painel do vendedor
+    // omite os dias que faltam do programa.
+    FOUNDER_PROGRAM_STARTS_AT: z.iso.datetime().optional(),
 
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     // Setado pelo playwright.config.ts / .env.e2e — nunca à mão.
@@ -45,6 +52,10 @@ const envSchema = z
   .refine(
     (env) => env.EMAIL_TRANSPORT !== 'resend' || !!env.RESEND_API_KEY,
     'EMAIL_TRANSPORT=resend exige RESEND_API_KEY',
+  )
+  .refine(
+    (env) => !env.R2_PRIVATE_BUCKET || env.R2_PRIVATE_BUCKET !== env.R2_PUBLIC_BUCKET,
+    'R2_PRIVATE_BUCKET tem que ser diferente de R2_PUBLIC_BUCKET (senão os entregáveis ficam públicos)',
   )
 
 const parsed = envSchema.safeParse(process.env)
@@ -67,3 +78,7 @@ export const r2Enabled = Boolean(
     env.R2_PUBLIC_BUCKET &&
     env.R2_PUBLIC_URL,
 )
+
+// Upload de arquivos de produto: entregável no bucket privado, prévia e capa
+// no público — precisa dos dois.
+export const r2ProductsEnabled = r2Enabled && Boolean(env.R2_PRIVATE_BUCKET)
