@@ -208,7 +208,8 @@
     "photoHint": "PNG, JPEG ou WEBP até 2 MB.",
     "invalidImage": "Imagem inválida",
     "uploadFailed": "Falha ao enviar a imagem",
-    "photoUpdated": "Foto atualizada"
+    "photoUpdated": "Foto atualizada",
+    "changePhotoLabel": "Mudar foto"
   },
   "productCard": {
     "listen": "Ouvir",
@@ -435,6 +436,525 @@
       "files": "Arquivos do preset",
       "audio": "Prévia em áudio",
       "publish": "Publicar"
+    }
+  },
+  "seller": {
+    "nav": {
+      "label": "Área do vendedor",
+      "dashboard": "Painel",
+      "sales": "Vendas",
+      "products": "Produtos",
+      "wallet": "Carteira",
+      "profile": "Perfil",
+      "payouts": "Recebimentos"
+    },
+    "navMobile": {
+      "dashboard": "Painel",
+      "sales": "Vendas",
+      "products": "Meus produtos",
+      "wallet": "Carteira",
+      "profile": "Perfil de vendedor",
+      "payouts": "Recebimentos"
+    },
+    "shell": {
+      "openMenu": "Abrir menu",
+      "closeMenu": "Fechar menu",
+      "homeLabel": "Amplifica, painel do vendedor",
+      "profileCard": "Seu perfil de vendedor",
+      "founder": "Vendedor fundador",
+      "seller": "Vendedor",
+      "newProduct": "Novo produto",
+      "backToStore": "Voltar para a loja",
+      "held": "{amount} retido"
+    },
+    "becomeSeller": {
+      "meta": "Comece a vender — Amplifica",
+      "eyebrow": "Vender na Amplifica",
+      "title": "Comece a vender",
+      "lead": "Publicar não pede dados bancários. Você conecta o recebimento só quando quiser vender.",
+      "displayName": "Nome de vendedor",
+      "displayNamePlaceholder": "Como seu nome aparece nos seus produtos",
+      "bio": "Sobre você",
+      "bioPlaceholder": "Conte sua história com o som, os timbres que você cria e o que quem compra vai encontrar.",
+      "optional": "Opcional",
+      "submit": "Começar a vender",
+      "submitting": "Criando…"
+    },
+    "status": {
+      "held": "Retida até {date}",
+      "available": "Disponível",
+      "refunded": "Reembolsada",
+      "transferred": "Transferida"
+    },
+    "dashboard": {
+      "meta": "Painel do vendedor — Amplifica",
+      "eyebrow": "Painel",
+      "greeting": "Olá, {name}",
+      "subtitleActive": "Resumo de {month} até hoje.",
+      "subtitleNew": "Bem-vindo à área do vendedor.",
+      "newProduct": "Novo produto",
+      "banner": {
+        "title": "Falta um passo para começar a vender",
+        "body": "Seus produtos já podem ser publicados, mas só ficam à venda depois que você conecta a conta de recebimento. O cadastro e os documentos ficam com a Stripe, não com a Amplifica.",
+        "cta": "Conectar recebimento"
+      },
+      "checklist": {
+        "title": "Seu primeiro preset está perto",
+        "lead": "Três passos e ele aparece para outros músicos.",
+        "done": "Feito",
+        "profile": {
+          "title": "Complete seu perfil de vendedor",
+          "text": "Nome, foto e uma bio curta. É o que aparece em \"Quem criou este pack\".",
+          "cta": "Editar perfil"
+        },
+        "product": {
+          "title": "Publique seu primeiro produto",
+          "text": "Arquivos, prévia em áudio e preço. Passa por uma análise antes de entrar na loja.",
+          "cta": "Novo produto"
+        },
+        "receiving": {
+          "title": "Conecte o recebimento",
+          "text": "Feito na Stripe. Só é preciso para vender, não para publicar.",
+          "cta": "Conectar"
+        }
+      },
+      "kpi": {
+        "label": "Resumo do mês",
+        "sales": "Vendas no mês",
+        "salesMore": "{count} a mais que {month}",
+        "salesLess": "{count} a menos que {month}",
+        "salesSame": "Igual a {month}",
+        "net": "Você recebeu (líquido)",
+        "netNote": "Depois de comissão e taxa",
+        "held": "Saldo retido",
+        "heldNote": "Libera {days} dias após cada venda",
+        "available": "Disponível para saque",
+        "availableNote": "Pronto para sacar"
+      },
+      "founder": {
+        "title": "Programa Fundador",
+        "used": "<strong>{used} de {total}</strong> vendas sem comissão usadas",
+        "remainingWithDays": "{sales, plural, one {Falta # venda isenta} other {Faltam # vendas isentas}} e {days, plural, one {# dia} other {# dias}} de programa. Depois a comissão volta a ser de {percent}% por venda.",
+        "remaining": "{sales, plural, one {Falta # venda isenta} other {Faltam # vendas isentas}}. Depois a comissão volta a ser de {percent}% por venda.",
+        "ended": "O programa chegou ao fim. A comissão agora é de {percent}% por venda."
+      },
+      "chart": {
+        "title": "Vendas em {month}",
+        "count": "{count, plural, =0 {# vendas} one {# venda} other {# vendas}}",
+        "label": "Gráfico de vendas por dia em {month} até hoje, com pico de {peak, plural, one {# venda} other {# vendas}}",
+        "labelEmpty": "Gráfico de vendas por dia em {month} até hoje, sem vendas",
+        "today": "Hoje"
+      },
+      "recent": {
+        "title": "Últimas vendas",
+        "viewAll": "Ver todas as vendas",
+        "empty": "Nenhuma venda ainda. Quando alguém comprar um produto seu, ela aparece aqui.",
+        "product": "Produto",
+        "date": "Data",
+        "price": "Venda",
+        "net": "Você recebe",
+        "status": "Situação"
+      }
+    },
+    "sales": {
+      "meta": "Vendas do vendedor — Amplifica",
+      "eyebrow": "Vendas",
+      "month": {
+        "group": "Escolher o mês",
+        "previous": "Mês anterior",
+        "next": "Próximo mês",
+        "select": "Mês",
+        "current": "Mês atual"
+      },
+      "kpi": {
+        "label": "Resumo do mês",
+        "sales": "Vendas",
+        "salesFirst": "Primeiro mês",
+        "salesMore": "{count} a mais que o mês anterior",
+        "salesLess": "{count} a menos que o mês anterior",
+        "salesSame": "Igual ao mês anterior",
+        "gross": "Valor bruto",
+        "grossNote": "Soma dos preços",
+        "refunds": "Reembolsos",
+        "refundsNote": "{count} no mês",
+        "net": "Você recebe",
+        "netNote": "Líquido do mês"
+      },
+      "chart": {
+        "title": "Vendas do mês, dia a dia",
+        "metricGroup": "O que o gráfico mostra",
+        "count": "Quantidade",
+        "net": "Você recebe",
+        "focusTitle": "Dia {day} de {month}",
+        "dayLabel": "Dia {day}: {value}",
+        "dayFuture": "Dia {day}: ainda não chegou",
+        "salesCount": "{count, plural, =0 {# vendas} one {# venda} other {# vendas}}",
+        "emptyDay": "Nenhuma venda neste dia",
+        "legend": "Totais por produto no mês",
+        "legendDetail": "{sales} · {amount}"
+      },
+      "list": {
+        "title": "Todas as vendas do mês",
+        "region": "Tabela de vendas do mês",
+        "filter": "Produto",
+        "filterAll": "Todos",
+        "date": "Data",
+        "order": "Pedido",
+        "product": "Produto",
+        "price": "Valor",
+        "commission": "Comissão",
+        "fee": "Taxa",
+        "net": "Você recebe",
+        "status": "Situação",
+        "exempt": "Isenta"
+      },
+      "empty": {
+        "title": "Nenhuma venda neste mês",
+        "text": "Use as setas para ver outro mês."
+      }
+    },
+    "wallet": {
+      "meta": "Carteira do vendedor — Amplifica",
+      "eyebrow": "Carteira",
+      "title": "Seu dinheiro",
+      "lead": "Cada venda fica retida por 30 dias, o tempo do prazo de reembolso e da conferência do pagamento. Depois disso o valor fica disponível para saque.",
+      "cards": {
+        "label": "Resumo da carteira",
+        "available": {
+          "label": "Disponível para saque",
+          "note": "Vai para a conta cadastrada na Stripe."
+        },
+        "held": {
+          "label": "Retido",
+          "note": "{count, plural, =0 {Nenhuma venda aguardando os 30 dias.} one {# venda aguardando os 30 dias.} other {# vendas aguardando os 30 dias.}}",
+          "next": "A próxima libera em {date}."
+        },
+        "received": {
+          "label": "Recebido desde o início",
+          "note": "Já transferido: {amount}."
+        }
+      },
+      "releases": {
+        "title": "Próximas liberações",
+        "empty": "Nenhum valor retido agora.",
+        "count": "{count, plural, =0 {# vendas} one {# venda} other {# vendas}}"
+      },
+      "statement": {
+        "title": "Extrato",
+        "region": "Tabela do extrato",
+        "date": "Data",
+        "movement": "Movimento",
+        "amount": "Valor",
+        "commission": "Comissão",
+        "fee": "Taxa",
+        "net": "Líquido",
+        "status": "Situação",
+        "exempt": "Isenta",
+        "sale": "Venda · {product}",
+        "refund": "Reembolso · {product}",
+        "transfer": "Transferência para sua conta Stripe",
+        "emptyAll": "Nenhum movimento ainda. Vendas, reembolsos e transferências aparecem aqui.",
+        "emptyFiltered": "Nenhum movimento neste filtro."
+      },
+      "filter": {
+        "group": "Filtrar extrato",
+        "all": "Tudo",
+        "sales": "Vendas",
+        "refunds": "Reembolsos",
+        "transfers": "Transferências"
+      }
+    },
+    "payouts": {
+      "meta": "Recebimentos — Amplifica",
+      "eyebrow": "Recebimentos",
+      "title": "Recebimentos",
+      "cardLabel": "Conta de recebimento",
+      "status": {
+        "NOT_STARTED": "Não conectado",
+        "PENDING": "Em análise na Stripe",
+        "VERIFIED": "Conectado",
+        "RESTRICTED": "Precisa de atenção na Stripe"
+      },
+      "connect": "Conectar recebimento",
+      "connectNote": "A conexão com a Stripe chega na próxima etapa."
+    },
+    "products": {
+      "meta": "Meus produtos — Amplifica",
+      "eyebrow": "Produtos",
+      "title": "Meus produtos",
+      "newProduct": "Novo produto",
+      "filter": {
+        "group": "Filtrar por situação",
+        "all": "Todos",
+        "published": "Publicados",
+        "review": "Em análise",
+        "draft": "Rascunhos",
+        "rejected": "Precisam de ajuste"
+      },
+      "search": {
+        "label": "Buscar produto",
+        "placeholder": "Buscar pelo nome"
+      },
+      "list": {
+        "region": "Lista de produtos",
+        "price": "Preço",
+        "sales": "Vendas",
+        "free": "Grátis",
+        "reason": "Motivo: {reason}"
+      },
+      "status": {
+        "published": "Publicado",
+        "review": "Em análise",
+        "draft": "Rascunho",
+        "rejected": "Precisa de ajuste"
+      },
+      "action": {
+        "published": "Editar",
+        "review": "Ver envio",
+        "draft": "Continuar",
+        "rejected": "Corrigir"
+      },
+      "kind": {
+        "PRESET": "Preset",
+        "IR": "IR",
+        "CAPTURE": "Capture",
+        "MIDI_PATCH": "Patch MIDI",
+        "BUNDLE": "Pacote",
+        "OTHER": "Outro"
+      },
+      "kindShort": {
+        "PRESET": "PST",
+        "IR": "IR",
+        "CAPTURE": "CAP",
+        "MIDI_PATCH": "MID",
+        "BUNDLE": "PCT",
+        "OTHER": "OUT"
+      },
+      "empty": {
+        "title": "Nada por aqui",
+        "text": "Nenhum produto nessa situação. Os outros filtros mostram o resto.",
+        "noneText": "Você ainda não criou nenhum produto. Comece pelo primeiro e envie para análise.",
+        "cta": "Novo produto"
+      },
+      "note": "Todo produto novo ou editado passa por análise antes de aparecer na loja. Você recebe um e-mail quando ela termina."
+    },
+    "productForm": {
+      "metaNew": "Novo produto — Amplifica",
+      "metaEdit": "Editar produto — Amplifica",
+      "back": "Meus produtos",
+      "titleNew": "Novo produto",
+      "titleEdit": "Editar produto",
+      "subtitle": "Cinco etapas curtas. Tudo é salvo como rascunho enquanto você avança.",
+      "locked": "Em análise. Você poderá editar quando a análise terminar.",
+      "steps": {
+        "nav": "Etapas do cadastro",
+        "info": "Informações",
+        "classification": "Classificação",
+        "files": "Arquivos e links",
+        "price": "Preço",
+        "review": "Revisar e enviar",
+        "stepOf": "Etapa {n} de {total}",
+        "done": "Concluída",
+        "missing": "Falta algo"
+      },
+      "nav": {
+        "back": "Voltar",
+        "saveDraft": "Salvar rascunho",
+        "next": "Continuar",
+        "submit": "Enviar para análise",
+        "blocked": "Para enviar falta: {items}."
+      },
+      "toast": {
+        "saved": "Rascunho salvo",
+        "submitted": "Enviado para análise"
+      },
+      "optional": "(opcional)",
+      "info": {
+        "kindTitle": "O que é",
+        "kindText": "Marque tudo o que vem no pack. Cada item vira uma tag de busca.",
+        "kinds": {
+          "PRESET": {
+            "label": "Preset",
+            "text": "Patch pronto para a pedaleira ou plugin."
+          },
+          "IR": {
+            "label": "IR",
+            "text": "Resposta de caixa e microfone, em .wav."
+          },
+          "CAPTURE": {
+            "label": "Capture",
+            "text": "Profile ou captura de um amplificador real."
+          },
+          "OTHER": {
+            "label": "Outro",
+            "text": "Algo que não se encaixa nos três."
+          }
+        },
+        "kindOther": "O que mais vem no pack?",
+        "kindOtherPlaceholder": "Ex.: patch MIDI, configuração de pedais analógicos",
+        "kindOtherHelp": "Aparece no produto e vai para a revisão da equipe, que pode virar uma opção nova para todos.",
+        "aboutTitle": "Sobre o produto",
+        "title": "Nome do produto",
+        "titlePlaceholder": "Ex.: Plexi 68 para Helix",
+        "shortDescription": "Descrição curta",
+        "shortDescriptionPlaceholder": "Uma frase que aparece no card da loja",
+        "shortDescriptionCount": "{count} de {max} caracteres",
+        "about": "Sobre o pack",
+        "aboutPlaceholder": "Que som é esse, em que estilo funciona, como foi gravado.",
+        "includes": "O que vem no pack",
+        "includeNew": "Novo item do pack",
+        "includeNewPlaceholder": "Ex.: 4 IRs de caixa 4x12, dois microfones",
+        "includeAdd": "Adicionar item",
+        "includeRemove": "Remover {item}"
+      },
+      "classification": {
+        "styleTitle": "Estilo",
+        "styleText": "Até 3 estilos em que o som funciona melhor.",
+        "styleCount": "{count} de {max}",
+        "styleOtherChip": "Outro",
+        "styleOther": "Qual estilo?",
+        "styleOtherPlaceholder": "Ex.: Sertanejo, Shoegaze, Djent",
+        "styleOtherHelp": "Vale para o seu produto na hora e vai para a revisão virar filtro da loja.",
+        "captureEyebrow": "Porque você marcou Capture",
+        "captureTitle": "Detalhes da captura",
+        "capturedAmp": "Amplificador capturado",
+        "capturedAmpPlaceholder": "Ex.: Marshall JCM 800 2203 de 1983",
+        "capturedAmpHelp": "Modelo e ano, se souber. É o que mais se busca em captures.",
+        "captureKind": "O que foi capturado",
+        "captureKinds": {
+          "AMP": "Só o amplificador",
+          "AMP_CAB": "Amplificador com caixa",
+          "PEDAL": "Pedal",
+          "OTHER": "Outro"
+        },
+        "captureKindOther": "O que foi capturado?",
+        "captureKindOtherPlaceholder": "O que foi capturado? Ex.: pré-amplificador, mesa de som"
+      },
+      "files": {
+        "title": "Arquivos",
+        "text": "Os arquivos do pack só são liberados para quem comprou. A prévia e a capa ficam públicas.",
+        "deliverable": "Arquivos do pack",
+        "deliverableButton": "Enviar arquivos",
+        "deliverableHint": "qualquer formato · até 200 MB",
+        "preview": "Prévia em áudio",
+        "previewButton": "Enviar prévia",
+        "previewHint": "MP3 ou WAV · até 50 MB",
+        "previewHelp": "Ajuda quem vai comprar a ouvir o som antes. Toque no equipamento do pack, sem música de terceiros.",
+        "cover": "Capa",
+        "coverButton": "Enviar imagem 16:10",
+        "coverHint": "JPG, PNG ou WebP · até 5 MB",
+        "coverAlt": "Capa do produto",
+        "remove": "Remover {name}",
+        "uploading": "Enviando {name}",
+        "uploadFailed": "Não foi possível enviar o arquivo. Tente de novo.",
+        "play": "Ouvir a prévia",
+        "pause": "Pausar a prévia",
+        "linksTitle": "Links",
+        "youtube": "Vídeo no YouTube",
+        "youtubePlaceholder": "https://youtube.com/watch?v=…",
+        "youtubeHelp": "Aparece na página do produto, abaixo da descrição.",
+        "youtubeInvalid": "Use um link do YouTube."
+      },
+      "price": {
+        "title": "Preço",
+        "label": "Preço de venda",
+        "help": "Mínimo de R$ 10,00. Você pode mudar depois.",
+        "error": "O preço mínimo é R$ 10,00.",
+        "errorTooHigh": "O preço máximo é R$ 100.000,00.",
+        "errorInvalid": "Digite um valor como 49,90.",
+        "freeHelp": "Produtos gratuitos não pagam comissão nem taxa.",
+        "free": "Produto gratuito",
+        "breakdown": "Quanto você recebe",
+        "gross": "Preço",
+        "commission": "Comissão Amplifica ({percent}%)",
+        "processing": "Taxa da Stripe (estimada)",
+        "net": "Você recebe por venda",
+        "deduction": "− {amount}",
+        "founder": "Como vendedor fundador, {count, plural, =0 {nas suas vendas isentas restantes} one {na sua # venda isenta restante} other {nas suas # vendas isentas restantes}} você recebe {amount} por venda."
+      },
+      "review": {
+        "title": "Revise antes de enviar",
+        "edit": "Editar",
+        "editLabel": "Editar {field}",
+        "kind": "Tipo",
+        "name": "Nome",
+        "style": "Estilo",
+        "files": "Arquivos",
+        "price": "Preço",
+        "empty": "—",
+        "filesValue": "{count, plural, =0 {Nenhum arquivo do pack} one {# arquivo do pack} other {# arquivos do pack}} · {preview, select, yes {com prévia em áudio} other {sem prévia}}",
+        "priceValue": "{price} (você recebe {net})",
+        "free": "Gratuito",
+        "suggestions": "Você sugeriu itens novos: {items}. Eles já aparecem no seu produto e vão para a revisão da equipe; se aprovados, viram opção para todos os vendedores."
+      },
+      "preview": {
+        "region": "Prévia na loja",
+        "eyebrow": "Como aparece na loja",
+        "kindPlaceholder": "Tipo",
+        "titlePlaceholder": "Nome do produto",
+        "descriptionPlaceholder": "A descrição curta aparece aqui.",
+        "free": "Grátis",
+        "buy": "Comprar",
+        "download": "Baixar"
+      },
+      "checklist": {
+        "title": "Antes de enviar",
+        "basics": "Tipo, nome e descrição",
+        "files": "Arquivos do pack enviados",
+        "price": "Preço a partir de R$ 10,00",
+        "priceFree": "Produto gratuito",
+        "ok": "feito",
+        "pending": "pendente"
+      },
+      "missing": {
+        "basics": "tipo, nome e descrição",
+        "files": "arquivos do pack enviados",
+        "price": "preço a partir de R$ 10,00"
+      }
+    },
+    "profile": {
+      "meta": "Perfil — Amplifica",
+      "eyebrow": "Perfil",
+      "title": "Suas informações",
+      "lead": "É o que o comprador vê em \"Quem criou este pack\", na página de cada produto seu. Dados de recebimento ficam em Recebimentos, na Stripe.",
+      "optional": "(opcional)",
+      "preview": {
+        "label": "Prévia: como aparece na página do produto",
+        "eyebrow": "Como aparece na página do produto",
+        "creator": "Quem criou este pack",
+        "otherProducts": "Outros produtos de {name}",
+        "note": "A prévia muda enquanto você edita os campos abaixo.",
+        "namePlaceholder": "Seu nome",
+        "bioPlaceholder": "Sua apresentação aparece aqui.",
+        "nameFallback": "você"
+      },
+      "identity": {
+        "title": "Quem é você",
+        "displayName": "Nome de vendedor",
+        "displayNameHelp": "Seu nome ou nome artístico. Aparece em todos os seus produtos.",
+        "bio": "Sobre você",
+        "bioHelp": "{count} de 400 caracteres. Conte há quanto tempo toca, onde usa seus presets e como testa.",
+        "city": "Cidade"
+      },
+      "devices": {
+        "title": "Equipamento que você usa",
+        "text": "Mostra ao comprador em que pedaleiras você cria e testa.",
+        "group": "Pedaleiras que você usa"
+      },
+      "socials": {
+        "title": "Redes sociais",
+        "text": "Aparecem como ícones no seu bloco da página do produto.",
+        "instagram": "Instagram",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "spotify": "Spotify",
+        "spotifyPrefix": "link",
+        "placeholder": "seu-usuario",
+        "spotifyPlaceholder": "open.spotify.com/artist/…"
+      },
+      "save": "Salvar alterações",
+      "saving": "Salvando…",
+      "saved": "Alterações salvas"
     }
   }
 }

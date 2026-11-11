@@ -208,7 +208,8 @@
     "photoHint": "PNG, JPEG or WEBP, up to 2 MB.",
     "invalidImage": "Invalid image",
     "uploadFailed": "Couldn't upload the image",
-    "photoUpdated": "Photo updated"
+    "photoUpdated": "Photo updated",
+    "changePhotoLabel": "Change photo"
   },
   "productCard": {
     "listen": "Listen",
@@ -435,6 +436,525 @@
       "files": "Preset files",
       "audio": "Audio preview",
       "publish": "Publish"
+    }
+  },
+  "seller": {
+    "nav": {
+      "label": "Seller area",
+      "dashboard": "Dashboard",
+      "sales": "Sales",
+      "products": "Products",
+      "wallet": "Wallet",
+      "profile": "Profile",
+      "payouts": "Payouts"
+    },
+    "navMobile": {
+      "dashboard": "Dashboard",
+      "sales": "Sales",
+      "products": "My products",
+      "wallet": "Wallet",
+      "profile": "Seller profile",
+      "payouts": "Payouts"
+    },
+    "shell": {
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "homeLabel": "Amplifica, seller dashboard",
+      "profileCard": "Your seller profile",
+      "founder": "Founding seller",
+      "seller": "Seller",
+      "newProduct": "New product",
+      "backToStore": "Back to the store",
+      "held": "{amount} on hold"
+    },
+    "becomeSeller": {
+      "meta": "Start selling — Amplifica",
+      "eyebrow": "Sell on Amplifica",
+      "title": "Start selling",
+      "lead": "Publishing needs no bank details. You connect payouts only when you are ready to sell.",
+      "displayName": "Seller name",
+      "displayNamePlaceholder": "How your name appears on your products",
+      "bio": "About you",
+      "bioPlaceholder": "Tell us about your tone journey, the sounds you create and what buyers will find.",
+      "optional": "Optional",
+      "submit": "Start selling",
+      "submitting": "Creating…"
+    },
+    "status": {
+      "held": "On hold until {date}",
+      "available": "Available",
+      "refunded": "Refunded",
+      "transferred": "Transferred"
+    },
+    "dashboard": {
+      "meta": "Seller dashboard — Amplifica",
+      "eyebrow": "Dashboard",
+      "greeting": "Hi, {name}",
+      "subtitleActive": "Summary of {month} so far.",
+      "subtitleNew": "Welcome to the seller area.",
+      "newProduct": "New product",
+      "banner": {
+        "title": "One step left to start selling",
+        "body": "Your products can already be published, but they only go on sale once you connect your payout account. Registration and documents stay with Stripe, not with Amplifica.",
+        "cta": "Connect payouts"
+      },
+      "checklist": {
+        "title": "Your first preset is close",
+        "lead": "Three steps and it shows up for other players.",
+        "done": "Done",
+        "profile": {
+          "title": "Complete your seller profile",
+          "text": "Name, photo and a short bio. This is what shows up in \"Who made this pack\".",
+          "cta": "Edit profile"
+        },
+        "product": {
+          "title": "Publish your first product",
+          "text": "Files, audio preview and price. It goes through a review before reaching the store.",
+          "cta": "New product"
+        },
+        "receiving": {
+          "title": "Connect payouts",
+          "text": "Done on Stripe. You only need it to sell, not to publish.",
+          "cta": "Connect"
+        }
+      },
+      "kpi": {
+        "label": "Month summary",
+        "sales": "Sales this month",
+        "salesMore": "{count} more than {month}",
+        "salesLess": "{count} fewer than {month}",
+        "salesSame": "Same as {month}",
+        "net": "You received (net)",
+        "netNote": "After commission and fees",
+        "held": "Balance on hold",
+        "heldNote": "Released {days} days after each sale",
+        "available": "Available to withdraw",
+        "availableNote": "Ready to withdraw"
+      },
+      "founder": {
+        "title": "Founder Program",
+        "used": "<strong>{used} of {total}</strong> commission-free sales used",
+        "remainingWithDays": "{sales, plural, one {# exempt sale} other {# exempt sales}} and {days, plural, one {# day} other {# days}} of the program left. After that, commission goes back to {percent}% per sale.",
+        "remaining": "{sales, plural, one {# exempt sale} other {# exempt sales}} left. After that, commission goes back to {percent}% per sale.",
+        "ended": "The program has ended. Commission is now {percent}% per sale."
+      },
+      "chart": {
+        "title": "Sales in {month}",
+        "count": "{count, plural, one {# sale} other {# sales}}",
+        "label": "Chart of sales per day in {month} so far, peaking at {peak, plural, one {# sale} other {# sales}}",
+        "labelEmpty": "Chart of sales per day in {month} so far, no sales",
+        "today": "Today"
+      },
+      "recent": {
+        "title": "Latest sales",
+        "viewAll": "View all sales",
+        "empty": "No sales yet. When someone buys one of your products, it shows up here.",
+        "product": "Product",
+        "date": "Date",
+        "price": "Sale",
+        "net": "You receive",
+        "status": "Status"
+      }
+    },
+    "sales": {
+      "meta": "Seller sales — Amplifica",
+      "eyebrow": "Sales",
+      "month": {
+        "group": "Choose the month",
+        "previous": "Previous month",
+        "next": "Next month",
+        "select": "Month",
+        "current": "Current month"
+      },
+      "kpi": {
+        "label": "Month summary",
+        "sales": "Sales",
+        "salesFirst": "First month",
+        "salesMore": "{count} more than the previous month",
+        "salesLess": "{count} fewer than the previous month",
+        "salesSame": "Same as the previous month",
+        "gross": "Gross amount",
+        "grossNote": "Sum of the prices",
+        "refunds": "Refunds",
+        "refundsNote": "{count} this month",
+        "net": "You receive",
+        "netNote": "Net for the month"
+      },
+      "chart": {
+        "title": "Sales this month, day by day",
+        "metricGroup": "What the chart shows",
+        "count": "Quantity",
+        "net": "You receive",
+        "focusTitle": "{month} {day}",
+        "dayLabel": "Day {day}: {value}",
+        "dayFuture": "Day {day}: not yet",
+        "salesCount": "{count, plural, one {# sale} other {# sales}}",
+        "emptyDay": "No sales on this day",
+        "legend": "Totals per product this month",
+        "legendDetail": "{sales} · {amount}"
+      },
+      "list": {
+        "title": "All sales this month",
+        "region": "Monthly sales table",
+        "filter": "Product",
+        "filterAll": "All",
+        "date": "Date",
+        "order": "Order",
+        "product": "Product",
+        "price": "Amount",
+        "commission": "Commission",
+        "fee": "Fee",
+        "net": "You receive",
+        "status": "Status",
+        "exempt": "Waived"
+      },
+      "empty": {
+        "title": "No sales this month",
+        "text": "Use the arrows to see another month."
+      }
+    },
+    "wallet": {
+      "meta": "Seller wallet — Amplifica",
+      "eyebrow": "Wallet",
+      "title": "Your money",
+      "lead": "Every sale is held for 30 days, the length of the refund window and the payment check. After that the amount is available to withdraw.",
+      "cards": {
+        "label": "Wallet summary",
+        "available": {
+          "label": "Available to withdraw",
+          "note": "Goes to the account registered with Stripe."
+        },
+        "held": {
+          "label": "Held",
+          "note": "{count, plural, =0 {No sales waiting out the 30 days.} one {# sale waiting out the 30 days.} other {# sales waiting out the 30 days.}}",
+          "next": "The next one is released on {date}."
+        },
+        "received": {
+          "label": "Received since the start",
+          "note": "Already transferred: {amount}."
+        }
+      },
+      "releases": {
+        "title": "Upcoming releases",
+        "empty": "Nothing is being held right now.",
+        "count": "{count, plural, =0 {# sales} one {# sale} other {# sales}}"
+      },
+      "statement": {
+        "title": "Statement",
+        "region": "Statement table",
+        "date": "Date",
+        "movement": "Movement",
+        "amount": "Amount",
+        "commission": "Commission",
+        "fee": "Fee",
+        "net": "Net",
+        "status": "Status",
+        "exempt": "Waived",
+        "sale": "Sale · {product}",
+        "refund": "Refund · {product}",
+        "transfer": "Transfer to your Stripe account",
+        "emptyAll": "No movements yet. Sales, refunds and transfers show up here.",
+        "emptyFiltered": "No movements for this filter."
+      },
+      "filter": {
+        "group": "Filter statement",
+        "all": "All",
+        "sales": "Sales",
+        "refunds": "Refunds",
+        "transfers": "Transfers"
+      }
+    },
+    "payouts": {
+      "meta": "Payouts — Amplifica",
+      "eyebrow": "Payouts",
+      "title": "Payouts",
+      "cardLabel": "Payout account",
+      "status": {
+        "NOT_STARTED": "Not connected",
+        "PENDING": "Under review at Stripe",
+        "VERIFIED": "Connected",
+        "RESTRICTED": "Needs attention at Stripe"
+      },
+      "connect": "Connect payouts",
+      "connectNote": "Connecting to Stripe comes in the next step."
+    },
+    "products": {
+      "meta": "My products — Amplifica",
+      "eyebrow": "Products",
+      "title": "My products",
+      "newProduct": "New product",
+      "filter": {
+        "group": "Filter by status",
+        "all": "All",
+        "published": "Published",
+        "review": "In review",
+        "draft": "Drafts",
+        "rejected": "Need changes"
+      },
+      "search": {
+        "label": "Search products",
+        "placeholder": "Search by name"
+      },
+      "list": {
+        "region": "Product list",
+        "price": "Price",
+        "sales": "Sales",
+        "free": "Free",
+        "reason": "Reason: {reason}"
+      },
+      "status": {
+        "published": "Published",
+        "review": "In review",
+        "draft": "Draft",
+        "rejected": "Needs changes"
+      },
+      "action": {
+        "published": "Edit",
+        "review": "View submission",
+        "draft": "Continue",
+        "rejected": "Fix"
+      },
+      "kind": {
+        "PRESET": "Preset",
+        "IR": "IR",
+        "CAPTURE": "Capture",
+        "MIDI_PATCH": "MIDI patch",
+        "BUNDLE": "Bundle",
+        "OTHER": "Other"
+      },
+      "kindShort": {
+        "PRESET": "PST",
+        "IR": "IR",
+        "CAPTURE": "CAP",
+        "MIDI_PATCH": "MID",
+        "BUNDLE": "PCK",
+        "OTHER": "OTH"
+      },
+      "empty": {
+        "title": "Nothing here",
+        "text": "No products in this status. The other filters show the rest.",
+        "noneText": "You haven't created any products yet. Start with the first one and send it for review.",
+        "cta": "New product"
+      },
+      "note": "Every new or edited product is reviewed before it appears in the store. You get an email when the review is done."
+    },
+    "productForm": {
+      "metaNew": "New product — Amplifica",
+      "metaEdit": "Edit product — Amplifica",
+      "back": "My products",
+      "titleNew": "New product",
+      "titleEdit": "Edit product",
+      "subtitle": "Five short steps. Everything is saved as a draft as you go.",
+      "locked": "In review. You can edit once the review is done.",
+      "steps": {
+        "nav": "Product steps",
+        "info": "Details",
+        "classification": "Classification",
+        "files": "Files and links",
+        "price": "Price",
+        "review": "Review and submit",
+        "stepOf": "Step {n} of {total}",
+        "done": "Done",
+        "missing": "Something missing"
+      },
+      "nav": {
+        "back": "Back",
+        "saveDraft": "Save draft",
+        "next": "Continue",
+        "submit": "Submit for review",
+        "blocked": "To submit, add: {items}."
+      },
+      "toast": {
+        "saved": "Draft saved",
+        "submitted": "Submitted for review"
+      },
+      "optional": "(optional)",
+      "info": {
+        "kindTitle": "What it is",
+        "kindText": "Check everything that comes in the pack. Each one becomes a search tag.",
+        "kinds": {
+          "PRESET": {
+            "label": "Preset",
+            "text": "Ready-made patch for a modeler or plugin."
+          },
+          "IR": {
+            "label": "IR",
+            "text": "Cab and mic response, as .wav."
+          },
+          "CAPTURE": {
+            "label": "Capture",
+            "text": "Profile or capture of a real amp."
+          },
+          "OTHER": {
+            "label": "Other",
+            "text": "Something that doesn't fit the other three."
+          }
+        },
+        "kindOther": "What else comes in the pack?",
+        "kindOtherPlaceholder": "E.g. MIDI patch, analog pedal settings",
+        "kindOtherHelp": "Shows on the product and goes to team review, where it may become a new option for everyone.",
+        "aboutTitle": "About the product",
+        "title": "Product name",
+        "titlePlaceholder": "E.g. Plexi 68 for Helix",
+        "shortDescription": "Short description",
+        "shortDescriptionPlaceholder": "One sentence shown on the store card",
+        "shortDescriptionCount": "{count} of {max} characters",
+        "about": "About the pack",
+        "aboutPlaceholder": "What it sounds like, which styles it suits, how it was recorded.",
+        "includes": "What's in the pack",
+        "includeNew": "New pack item",
+        "includeNewPlaceholder": "E.g. 4 IRs of a 4x12 cab, two mics",
+        "includeAdd": "Add item",
+        "includeRemove": "Remove {item}"
+      },
+      "classification": {
+        "styleTitle": "Style",
+        "styleText": "Up to 3 styles the sound works best in.",
+        "styleCount": "{count} of {max}",
+        "styleOtherChip": "Other",
+        "styleOther": "Which style?",
+        "styleOtherPlaceholder": "E.g. Sertanejo, Shoegaze, Djent",
+        "styleOtherHelp": "Applies to your product right away and goes to review to become a store filter.",
+        "captureEyebrow": "Because you checked Capture",
+        "captureTitle": "Capture details",
+        "capturedAmp": "Captured amp",
+        "capturedAmpPlaceholder": "E.g. 1983 Marshall JCM 800 2203",
+        "capturedAmpHelp": "Model and year, if you know. It's what people search for most in captures.",
+        "captureKind": "What was captured",
+        "captureKinds": {
+          "AMP": "Amp only",
+          "AMP_CAB": "Amp with cab",
+          "PEDAL": "Pedal",
+          "OTHER": "Other"
+        },
+        "captureKindOther": "What was captured?",
+        "captureKindOtherPlaceholder": "What was captured? E.g. preamp, mixing desk"
+      },
+      "files": {
+        "title": "Files",
+        "text": "Pack files are only released to buyers. The preview and cover are public.",
+        "deliverable": "Pack files",
+        "deliverableButton": "Upload files",
+        "deliverableHint": "any format · up to 200 MB",
+        "preview": "Audio preview",
+        "previewButton": "Upload preview",
+        "previewHint": "MP3 or WAV · up to 50 MB",
+        "previewHelp": "Helps buyers hear the sound first. Play through the pack's rig, no third-party music.",
+        "cover": "Cover",
+        "coverButton": "Upload 16:10 image",
+        "coverHint": "JPG, PNG or WebP · up to 5 MB",
+        "coverAlt": "Product cover",
+        "remove": "Remove {name}",
+        "uploading": "Uploading {name}",
+        "uploadFailed": "Couldn't upload the file. Try again.",
+        "play": "Play the preview",
+        "pause": "Pause the preview",
+        "linksTitle": "Links",
+        "youtube": "YouTube video",
+        "youtubePlaceholder": "https://youtube.com/watch?v=…",
+        "youtubeHelp": "Shows on the product page, below the description.",
+        "youtubeInvalid": "Use a YouTube link."
+      },
+      "price": {
+        "title": "Price",
+        "label": "Sale price",
+        "help": "Minimum R$ 10.00. You can change it later.",
+        "error": "The minimum price is R$ 10.00.",
+        "errorTooHigh": "The maximum price is R$ 100,000.00.",
+        "errorInvalid": "Enter an amount like 49,90.",
+        "freeHelp": "Free products pay no commission or fee.",
+        "free": "Free product",
+        "breakdown": "What you get",
+        "gross": "Price",
+        "commission": "Amplifica commission ({percent}%)",
+        "processing": "Stripe fee (estimated)",
+        "net": "You get per sale",
+        "deduction": "− {amount}",
+        "founder": "As a founding seller, {count, plural, =0 {on your remaining exempt sales} one {on your # remaining exempt sale} other {on your # remaining exempt sales}} you get {amount} per sale."
+      },
+      "review": {
+        "title": "Review before submitting",
+        "edit": "Edit",
+        "editLabel": "Edit {field}",
+        "kind": "Type",
+        "name": "Name",
+        "style": "Style",
+        "files": "Files",
+        "price": "Price",
+        "empty": "—",
+        "filesValue": "{count, plural, =0 {No pack files} one {# pack file} other {# pack files}} · {preview, select, yes {with audio preview} other {no preview}}",
+        "priceValue": "{price} (you get {net})",
+        "free": "Free",
+        "suggestions": "You suggested new items: {items}. They already show on your product and go to team review; if approved, they become options for every seller."
+      },
+      "preview": {
+        "region": "Store preview",
+        "eyebrow": "How it looks in the store",
+        "kindPlaceholder": "Type",
+        "titlePlaceholder": "Product name",
+        "descriptionPlaceholder": "The short description shows here.",
+        "free": "Free",
+        "buy": "Buy",
+        "download": "Download"
+      },
+      "checklist": {
+        "title": "Before submitting",
+        "basics": "Type, name and description",
+        "files": "Pack files uploaded",
+        "price": "Price from R$ 10.00",
+        "priceFree": "Free product",
+        "ok": "done",
+        "pending": "pending"
+      },
+      "missing": {
+        "basics": "type, name and description",
+        "files": "pack files uploaded",
+        "price": "price from R$ 10.00"
+      }
+    },
+    "profile": {
+      "meta": "Profile — Amplifica",
+      "eyebrow": "Profile",
+      "title": "Your details",
+      "lead": "This is what buyers see in \"Who made this pack\" on each of your product pages. Payout details live in Payouts, on Stripe.",
+      "optional": "(optional)",
+      "preview": {
+        "label": "Preview: how it appears on the product page",
+        "eyebrow": "How it appears on the product page",
+        "creator": "Who made this pack",
+        "otherProducts": "More products from {name}",
+        "note": "The preview updates as you edit the fields below.",
+        "namePlaceholder": "Your name",
+        "bioPlaceholder": "Your introduction appears here.",
+        "nameFallback": "you"
+      },
+      "identity": {
+        "title": "Who you are",
+        "displayName": "Seller name",
+        "displayNameHelp": "Your name or stage name. It appears on all your products.",
+        "bio": "About you",
+        "bioHelp": "{count} of 400 characters. Tell us how long you have played, where you use your presets and how you test them.",
+        "city": "City"
+      },
+      "devices": {
+        "title": "Gear you use",
+        "text": "Shows buyers which modelers you create and test on.",
+        "group": "Modelers you use"
+      },
+      "socials": {
+        "title": "Social links",
+        "text": "They show up as icons in your block on the product page.",
+        "instagram": "Instagram",
+        "youtube": "YouTube",
+        "tiktok": "TikTok",
+        "spotify": "Spotify",
+        "spotifyPrefix": "link",
+        "placeholder": "your-handle",
+        "spotifyPlaceholder": "open.spotify.com/artist/…"
+      },
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Changes saved"
     }
   }
 }

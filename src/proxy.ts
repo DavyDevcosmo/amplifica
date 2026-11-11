@@ -5,7 +5,14 @@ import { type NextRequest, NextResponse } from 'next/server'
 // OTIMISTA baseado na presença do cookie de sessão — não é segurança de
 // verdade (o cookie pode estar expirado/inválido). O guard que importa é o
 // `requireUser()`/`requireRole()` do src/lib/auth.ts, chamado nos layouts.
-const PROTECTED_PREFIXES = ['/cart', '/checkout', '/account', '/seller', '/admin']
+const PROTECTED_PREFIXES = [
+  '/cart',
+  '/checkout',
+  '/account',
+  '/becomeSeller',
+  '/seller',
+  '/admin',
+]
 const AUTH_PAGES = ['/login', '/signup']
 
 function matchesPrefix(pathname: string, prefixes: string[]) {
@@ -39,6 +46,7 @@ export const config = {
     '/cart/:path*',
     '/checkout/:path*',
     '/account/:path*',
+    '/becomeSeller',
     '/seller/:path*',
     '/admin/:path*',
     '/login',
