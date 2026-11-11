@@ -1,28 +1,10 @@
 import { expect, test } from '@playwright/test'
-import { clearMailbox, waitForEmail, waitForOtp } from './helpers/mailbox'
-
-function uniqueEmail(tag: string) {
-  return `e2e-${tag}-${Date.now()}@example.com`
-}
-
-const password = 'senha1234'
+import { clearMailbox, waitForEmail } from './helpers/mailbox'
+import { password, signUpAndLogin, uniqueEmail } from './helpers/session'
 
 test.beforeAll(async () => {
   await clearMailbox()
 })
-
-async function signUpAndLogin(page: import('@playwright/test').Page, email: string) {
-  await page.goto('/signup')
-  await page.getByLabel('Nome completo').fill('Maria Souza')
-  await page.getByLabel('E-mail').fill(email)
-  await page.getByLabel('Senha', { exact: true }).fill(password)
-  await page.getByLabel('Confirmar senha').fill(password)
-  await page.getByRole('button', { name: 'Criar conta' }).click()
-  const otp = await waitForOtp(email)
-  await page.locator('input[autocomplete="one-time-code"]').fill(otp)
-  await page.getByRole('button', { name: 'Confirmar e-mail' }).click()
-  await expect(page).toHaveURL('/')
-}
 
 test('conta: perfil e segurança, com menu entre as duas telas', async ({ page }) => {
   const email = uniqueEmail('account')
