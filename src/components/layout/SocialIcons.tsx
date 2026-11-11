@@ -50,3 +50,12 @@ export function SpotifyIcon({ className }: IconProps) {
     </svg>
   )
 }
+
+// Redes que a loja mostra no bloco "Quem criou este pack" (nome + ícone),
+// compartilhado entre a página do produto e a prévia do perfil do vendedor.
+export const SOCIAL_NETWORKS = {
+  instagram: { label: 'Instagram', Icon: InstagramIcon },
+  youtube: { label: 'YouTube', Icon: YoutubeIcon },
+  tiktok: { label: 'TikTok', Icon: TiktokIcon },
+  spotify: { label: 'Spotify', Icon: SpotifyIcon },
+} as const

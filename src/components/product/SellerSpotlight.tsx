@@ -1,23 +1,11 @@
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
-import {
-  InstagramIcon,
-  SpotifyIcon,
-  TiktokIcon,
-  YoutubeIcon,
-} from '@/components/layout/SocialIcons'
+import { SOCIAL_NETWORKS } from '@/components/layout/SocialIcons'
 import { FounderSeal } from '@/components/product/FounderSeal'
 import type { ProductSeller } from '@/components/product/sampleProducts'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-
-const NETWORKS = {
-  instagram: { label: 'Instagram', Icon: InstagramIcon },
-  youtube: { label: 'YouTube', Icon: YoutubeIcon },
-  tiktok: { label: 'TikTok', Icon: TiktokIcon },
-  spotify: { label: 'Spotify', Icon: SpotifyIcon },
-} as const
 
 // Faixa marinho "Quem criou este pack": foto (com o selo, se for fundador),
 // nome, bio, redes e link pra loja.
@@ -73,7 +61,7 @@ export async function SellerSpotlight({
               className="mt-1 flex flex-wrap gap-2"
             >
               {seller.social.map(({ network, href }) => {
-                const { label, Icon } = NETWORKS[network]
+                const { label, Icon } = SOCIAL_NETWORKS[network]
                 return (
                   <li key={network}>
                     <a

@@ -1,6 +1,6 @@
 'use client'
 
-import { Camera } from 'lucide-react'
+import { Camera, Pencil } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useRef, useState, useTransition } from 'react'
@@ -9,13 +9,24 @@ import { confirmAvatarAction, requestAvatarUploadAction } from '@/actions/userAc
 import { useIssueTranslator } from '@/components/auth/fieldErrors'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/ui/spinner'
+import { getInitials } from '@/lib/utils'
 import { avatarUploadSchema } from '@/schemas/userSchema'
 
 type AvatarUploadProps = {
   user: { name: string; image?: string | null }
+  // 'pencil': avatar grande com um botão de lápis sobreposto no canto (perfil
+  // do vendedor). O padrão é o avatar pequeno com o botão "Trocar foto".
+  variant?: 'default' | 'pencil'
+  // Avisa a URL da foto nova depois que o upload é confirmado.
+  onUploaded?: (imageUrl: string) => void
 }
 
-export function AvatarUpload({ user }: AvatarUploadProps) {
+export function AvatarUpload({
+  user,
+  variant = 'default',
+  onUploaded,
+}: AvatarUploadProps) {
   const t = useTranslations('account')
   const translateIssue = useIssueTranslator()
   const router = useRouter()
@@ -23,11 +34,7 @@ export function AvatarUpload({ user }: AvatarUploadProps) {
   const [preview, setPreview] = useState<string | null>(user.image ?? null)
   const [isPending, startTransition] = useTransition()
 
-  const initials = user.name
-    .split(' ')
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join('')
+  const initials = getInitials(user.name)
 
   function handleFile(file: File) {
     const parsed = avatarUploadSchema.safeParse({
@@ -64,9 +71,57 @@ export function AvatarUpload({ user }: AvatarUploadProps) {
       }
 
       setPreview(confirmResult.data.imageUrl)
+      onUploaded?.(confirmResult.data.imageUrl)
       toast.success(t('photoUpdated'))
       router.refresh()
     })
+  }
+
+  const fileInput = (
+    <input
+      ref={inputRef}
+      type="file"
+      accept="image/png,image/jpeg,image/webp"
+      className="hidden"
+      onChange={(e) => {
+        const file = e.target.files?.[0]
+        if (file) handleFile(file)
+        e.target.value = ''
+      }}
+    />
+  )
+
+  if (variant === 'pencil') {
+    return (
+      <div className="flex flex-wrap items-center gap-5">
+        <span className="relative size-28 flex-none">
+          <Avatar className="size-28 border-2 border-celeste after:hidden">
+            {preview && <AvatarImage src={preview} alt="" />}
+            <AvatarFallback className="bg-marinho text-3xl font-bold text-white">
+              {initials}
+            </AvatarFallback>
+          </Avatar>
+          {fileInput}
+          <button
+            type="button"
+            aria-label={t('changePhotoLabel')}
+            title={t('changePhotoLabel')}
+            disabled={isPending}
+            onClick={() => inputRef.current?.click()}
+            className="absolute -right-0.5 -bottom-0.5 grid size-9 place-items-center rounded-full border-[3px] border-card bg-azul text-white outline-none after:absolute after:-inset-1 after:content-[''] hover:bg-azul-forte focus-visible:ring-2 focus-visible:ring-azul focus-visible:ring-offset-2 disabled:opacity-60"
+          >
+            {isPending ? (
+              <Spinner className="size-4" aria-hidden />
+            ) : (
+              <Pencil className="size-4" aria-hidden />
+            )}
+          </button>
+        </span>
+        <p className="max-w-[36ch] text-[0.8125rem] leading-[1.1875rem] text-ardosia">
+          {t('photoHint')}
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -76,17 +131,7 @@ export function AvatarUpload({ user }: AvatarUploadProps) {
         <AvatarFallback>{initials}</AvatarFallback>
       </Avatar>
       <div>
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/png,image/jpeg,image/webp"
-          className="hidden"
-          onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) handleFile(file)
-            e.target.value = ''
-          }}
-        />
+        {fileInput}
         <Button
           type="button"
           variant="outline"
