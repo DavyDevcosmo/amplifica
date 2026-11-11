@@ -27,6 +27,12 @@ model SellerProfile {
   displayName             String
   bio                     String?
   avatarKey               String?
+  city                    String?
+  devices                 String[]
+  instagram               String?
+  youtube                 String?
+  tiktok                  String?
+  spotifyUrl              String?
   status                  SellerStatus        @default(ACTIVE)
   stripeAccountId         String?             @unique
   stripeAccountStatus     StripeAccountStatus @default(NOT_STARTED)

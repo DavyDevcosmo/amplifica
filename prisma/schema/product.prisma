@@ -14,6 +14,14 @@ enum ProductType {
   CAPTURE
   MIDI_PATCH
   BUNDLE
+  OTHER
+}
+
+enum CaptureKind {
+  AMP
+  AMP_CAB
+  PEDAL
+  OTHER
 }
 
 enum Device {
@@ -71,26 +79,28 @@ model Tag {
 }
 
 model Product {
-  id             String           @id @default(cuid())
-  sellerId       String
-  seller         SellerProfile    @relation(fields: [sellerId], references: [id], onDelete: Cascade)
-  slug           String           @unique
-  instrument     Instrument
-  productType    ProductType
-  compatibility  Device[]
-  status         ProductStatus    @default(DRAFT)
-  priceCents     Int
-  title          String
-  description    String
-  inspiredBy     String?
-  categoryId     String?
-  category       Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  tags           Tag[]
-  liveRevisionId String?          @unique
-  liveRevision   ProductRevision? @relation("LiveRevision", fields: [liveRevisionId], references: [id], onDelete: SetNull)
-  publishedAt    DateTime?
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  id               String           @id @default(cuid())
+  sellerId         String
+  seller           SellerProfile    @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  slug             String           @unique
+  instrument       Instrument
+  productType      ProductType
+  kinds            ProductType[]
+  compatibility    Device[]
+  status           ProductStatus    @default(DRAFT)
+  priceCents       Int
+  title            String
+  description      String
+  shortDescription String           @default("")
+  inspiredBy       String?
+  categoryId       String?
+  category         Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tags             Tag[]
+  liveRevisionId   String?          @unique
+  liveRevision     ProductRevision? @relation("LiveRevision", fields: [liveRevisionId], references: [id], onDelete: SetNull)
+  publishedAt      DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
 
   revisions     ProductRevision[] @relation("ProductRevisions")
   bundleItems   BundleItem[]      @relation("BundleParent")
@@ -107,30 +117,42 @@ model Product {
   @@index([status, publishedAt])
   @@index([categoryId])
   @@index([compatibility], type: Gin)
+  @@index([kinds], type: Gin)
   @@map("products")
 }
 
 model ProductRevision {
-  id              String         @id @default(cuid())
-  productId       String
-  product         Product        @relation("ProductRevisions", fields: [productId], references: [id], onDelete: Cascade)
-  version         Int
-  title           String
-  description     String
-  inspiredBy      String?
-  compatibility   Device[]
-  changelog       String?
-  status          RevisionStatus @default(DRAFT)
-  submittedAt     DateTime?
-  reviewedById    String?
-  reviewer        User?          @relation("RevisionReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
-  reviewedAt      DateTime?
-  rejectionReason String?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  id               String         @id @default(cuid())
+  productId        String
+  product          Product        @relation("ProductRevisions", fields: [productId], references: [id], onDelete: Cascade)
+  version          Int
+  title            String
+  description      String
+  shortDescription String         @default("")
+  includes         String[]
+  kinds            ProductType[]
+  kindOther        String?
+  styles           String[]
+  styleOther       String?
+  capturedAmp      String?
+  captureKind      CaptureKind?
+  captureKindOther String?
+  youtubeUrl       String?
+  priceCents       Int?
+  inspiredBy       String?
+  compatibility    Device[]
+  changelog        String?
+  status           RevisionStatus @default(DRAFT)
+  submittedAt      DateTime?
+  reviewedById     String?
+  reviewer         User?          @relation("RevisionReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt       DateTime?
+  rejectionReason  String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 
   files      ProductFile[]
-  liveFor    Product?    @relation("LiveRevision")
+  liveFor    Product?      @relation("LiveRevision")
   orderItems OrderItem[]
 
   @@unique([productId, version])
