@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { getInitials, safeCallbackUrl } from './utils'
+import { formatFileSize, getInitials, safeCallbackUrl, slugify } from './utils'
 
 describe('getInitials', () => {
   test('usa as duas primeiras palavras em maiúsculas', () => {
@@ -47,5 +47,24 @@ describe('safeCallbackUrl', () => {
 
   test('bloqueia caminho que não começa com "/"', () => {
     expect(safeCallbackUrl('account/profile')).toBe('/')
+  })
+})
+
+describe('slugify', () => {
+  test('minúsculas, sem acento, só [a-z0-9-]', () => {
+    expect(slugify('Plexi 68 — Helix  Ação!')).toBe('plexi-68-helix-acao')
+  })
+
+  test('sem hífens nas pontas', () => {
+    expect(slugify('  --Olá, mundo--  ')).toBe('ola-mundo')
+  })
+})
+
+describe('formatFileSize', () => {
+  test('KB abaixo de 1 MB, MB com uma casa acima', () => {
+    expect(formatFileSize(48 * 1024)).toBe('48 KB')
+    expect(formatFileSize(10)).toBe('1 KB')
+    expect(formatFileSize(2.1 * 1024 * 1024)).toBe('2,1 MB')
+    expect(formatFileSize(200 * 1024 * 1024)).toBe('200 MB')
   })
 })

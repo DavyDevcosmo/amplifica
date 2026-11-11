@@ -1,5 +1,11 @@
 import { describe, expect, test } from 'vitest'
-import { SELLER_RULES, simulateMonthlyEarnings } from './sellerEarnings'
+import {
+  estimateProcessingCents,
+  parseBrlToCents,
+  SELLER_RULES,
+  saleBreakdown,
+  simulateMonthlyEarnings,
+} from './sellerEarnings'
 
 describe('simulateMonthlyEarnings', () => {
   test('sem Fundador: 15% de comissão e processamento em toda venda', () => {
@@ -50,5 +56,47 @@ describe('simulateMonthlyEarnings', () => {
     for (const value of Object.values(result)) {
       expect(Number.isInteger(value)).toBe(true)
     }
+  })
+})
+
+describe('estimateProcessingCents', () => {
+  test('3,99% + R$ 0,39, ou 0 para produto gratuito', () => {
+    expect(estimateProcessingCents(6792)).toBe(310) // 271 + 39
+    expect(estimateProcessingCents(0)).toBe(0)
+  })
+})
+
+describe('saleBreakdown', () => {
+  test('com comissão e isenta', () => {
+    expect(saleBreakdown({ priceCents: 6792, platformFeeCents: 1019 })).toEqual({
+      grossCents: 6792,
+      commissionCents: 1019,
+      processingCents: 310,
+      netCents: 5463,
+      exempt: false,
+    })
+    expect(saleBreakdown({ priceCents: 6792, platformFeeCents: 0 }).exempt).toBe(true)
+    expect(saleBreakdown({ priceCents: 0, platformFeeCents: 0 }).exempt).toBe(false)
+  })
+
+  test('líquido nunca fica negativo', () => {
+    expect(saleBreakdown({ priceCents: 100, platformFeeCents: 100 }).netCents).toBe(0)
+  })
+})
+
+describe('parseBrlToCents', () => {
+  test.each([
+    ['67,92', 6792],
+    ['1.234,50', 123450],
+    ['10', 1000],
+    ['9,99', 999],
+    [',5', 50],
+    [' 12,3 ', 1230],
+    ['', null],
+    ['abc', null],
+    ['12,345', null],
+    ['-5', null],
+  ])('parseBrlToCents(%s)', (input, cents) => {
+    expect(parseBrlToCents(input)).toBe(cents)
   })
 })

@@ -53,3 +53,48 @@ export function simulateMonthlyEarnings({
 
   return { grossCents, exemptSales, commissionCents, processingCents, netCents }
 }
+
+// Taxa de processamento estimada de uma venda (grátis = 0). É estimativa até o
+// checkout gravar a taxa real da Stripe no pedido.
+export function estimateProcessingCents(priceCents: number): number {
+  if (priceCents === 0) return 0
+  return (
+    applyBps(priceCents, SELLER_RULES.processingBps) + SELLER_RULES.processingFixedCents
+  )
+}
+
+export type SaleBreakdown = {
+  grossCents: number
+  commissionCents: number
+  processingCents: number
+  netCents: number
+  exempt: boolean
+}
+
+// Quebra de uma venda: comissão = `platformFeeCents` gravado no pedido (já
+// reflete a isenção de Fundador); processamento é estimado.
+export function saleBreakdown(item: {
+  priceCents: number
+  platformFeeCents: number
+}): SaleBreakdown {
+  const grossCents = item.priceCents
+  const commissionCents = item.platformFeeCents
+  const processingCents = estimateProcessingCents(item.priceCents)
+  return {
+    grossCents,
+    commissionCents,
+    processingCents,
+    netCents: Math.max(0, grossCents - commissionCents - processingCents),
+    exempt: item.priceCents > 0 && item.platformFeeCents === 0,
+  }
+}
+
+// Texto digitado pelo vendedor ("1.234,50", "9,99", ",5") -> centavos (Int),
+// ou null se não for um valor em reais válido.
+export function parseBrlToCents(input: string): number | null {
+  const text = input.trim()
+  if (text === '') return null
+  if (!/^\d{1,3}(\.\d{3})*(,\d{1,2})?$|^\d*(,\d{1,2})?$/.test(text)) return null
+  const [whole = '', fraction = ''] = text.replaceAll('.', '').split(',')
+  return Number(whole || '0') * 100 + Number(fraction.padEnd(2, '0'))
+}
